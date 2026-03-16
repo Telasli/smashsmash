@@ -326,11 +326,10 @@ function App() {
             prepares avec du bacon, des oeufs, du fromage, des tots et bien plus encore.
           </p>
           <div className="breakfast-times">
-            <p><strong>Mansion House :</strong> 8h &mdash; 11h</p>
-            <p><strong>Canary Wharf :</strong> 8h &mdash; 11h (Dim &mdash; Ven), 8h30 &mdash; 11h (Sam)</p>
-            <p><strong>St. Pancras :</strong> 7h30 &mdash; 11h</p>
-            <p><strong>King&rsquo;s Cross Station :</strong> 7h30 &mdash; 11h</p>
-            <p><strong>Gatwick Airport :</strong> 3h30 &mdash; 20h30</p>
+            <p><strong>Bordeaux :</strong> 8h &mdash; 11h</p>
+            <p><strong>Saint Germain en Laye :</strong> 8h &mdash; 11h</p>
+            <p><strong>Quimper :</strong> 8h30 &mdash; 11h</p>
+            <p><strong>Anderlecht :</strong> 8h &mdash; 11h</p>
           </div>
           <div>
             <a href="/restaurants" className="btn-pill btn-white">Commander</a>
