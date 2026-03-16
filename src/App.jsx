@@ -246,7 +246,7 @@ function App() {
 
       {/* ===== 7. LES MEILLEURS BURGERS ===== */}
       <section className="best-burgers">
-        <h2>Les meilleurs burgers a Londres, Birmingham, Cambridge, Cardiff et Oxford</h2>
+        <h2>Les meilleurs burgers a Bordeaux, Saint Germain en Laye, Quimper et Anderlecht</h2>
         <p>
           Passez dans votre SmashSmash le plus proche pour savourer votre burger prefere, des frites
           crinkle-cut et des milkshakes faits maison. Ou restez chez vous et laissez-nous vous
