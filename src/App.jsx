@@ -241,6 +241,7 @@ function App() {
             <BurgerIcon size={48} color="white" />
           </div>
           <p>Retrouvez les dernieres actualites, mises a jour et coulisses</p>
+          <a href="/blog" className="btn-pill btn-white" style={{ marginTop: '20px' }}>Voir le blog</a>
         </div>
       </section>
 
@@ -260,52 +261,20 @@ function App() {
         <h2>Tous nos restaurants</h2>
         <p>Trouvez un restaurant de burgers pres de chez vous, ouvert sur place ou en livraison.</p>
 
-        <div className="locations-swiper-wrapper">
-          <button ref={locPrevRef} className="swiper-nav-btn swiper-nav-prev" aria-label="Precedent">
-            <ChevronLeft />
-          </button>
-          <button ref={locNextRef} className="swiper-nav-btn swiper-nav-next" aria-label="Suivant">
-            <ChevronRight />
-          </button>
-
-          <Swiper
-            modules={[Navigation]}
-            spaceBetween={20}
-            slidesPerView={4}
-            loop={true}
-            onInit={(swiper) => {
-              swiper.params.navigation.prevEl = locPrevRef.current
-              swiper.params.navigation.nextEl = locNextRef.current
-              swiper.navigation.init()
-              swiper.navigation.update()
-            }}
-            breakpoints={{
-              0: { slidesPerView: 1.3, spaceBetween: 12 },
-              480: { slidesPerView: 2, spaceBetween: 16 },
-              768: { slidesPerView: 3, spaceBetween: 20 },
-              1024: { slidesPerView: 4, spaceBetween: 20 },
-            }}
-          >
-            {locations.map((loc) => (
-              <SwiperSlide key={loc.name}>
-                <div className="location-card">
-                  <div className="location-card-image">
-                    <img src={loc.image} alt={loc.name} loading="lazy" />
-                  </div>
-                  <div className="location-card-info">
-                    <div className="loc-icon">
-                      <svg viewBox="0 0 24 24">
-                        <circle cx="12" cy="10" r="8" />
-                        <path d="M8 12 h8 M8 9 Q12 4 16 9" />
-                      </svg>
-                    </div>
-                    <h4>{loc.name}</h4>
-                    <span className="see-location">Voir le restaurant &gt;</span>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+        <div className="locations-grid-home">
+          {locations.slice(0, 4).map((loc) => (
+            <div className="location-card" key={loc.name}>
+              <div className="location-card-image">
+                <img src={loc.image} alt={loc.name} loading="lazy" />
+              </div>
+              <div className="location-card-info">
+                <h4>{loc.name}</h4>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style={{ textAlign: 'center', marginTop: '40px' }}>
+          <a href="/restaurants" className="btn-pill btn-outline-black">Tous nos restaurants</a>
         </div>
       </section>
 
