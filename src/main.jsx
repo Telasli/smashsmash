@@ -1,6 +1,6 @@
-import { StrictMode } from 'react'
+import { StrictMode, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import MenuPage from './pages/MenuPage.jsx'
@@ -11,6 +11,14 @@ import BlogPage from './pages/BlogPage.jsx'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import './App.css'
+
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+  return null
+}
 
 function Layout({ children }) {
   return (
@@ -25,6 +33,7 @@ function Layout({ children }) {
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout><App /></Layout>} />
         <Route path="/menu" element={<Layout><MenuPage /></Layout>} />
