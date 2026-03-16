@@ -1,0 +1,244 @@
+/* ================================================================
+   BLOG PAGE
+   ================================================================ */
+
+/* ===== HERO ===== */
+.blog-hero {
+  text-align: center;
+  padding: 80px 40px 60px;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.blog-hero h1 {
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 900;
+  color: var(--black);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.blog-hero-desc {
+  font-size: 18px;
+  color: var(--gray-text);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ===== GRID SECTION ===== */
+.blog-grid-section {
+  padding: 80px 40px;
+  background: var(--gray-light-bg);
+}
+
+.blog-grid-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+/* ===== CARD ===== */
+.blog-card {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.blog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* -- Image -- */
+.blog-card-image {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.blog-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.blog-card:hover .blog-card-image img {
+  transform: scale(1.05);
+}
+
+/* -- Body -- */
+.blog-card-body {
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* -- Category tag -- */
+.blog-card-tag {
+  display: inline-block;
+  width: fit-content;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.blog-card-tag--recettes {
+  background: #e8f5e9;
+  color: var(--green-brand);
+}
+
+.blog-card-tag--actualites {
+  background: #fff3e0;
+  color: #e8960c;
+}
+
+.blog-card-tag--coulisses {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.blog-card-tag--evenements {
+  background: #fce4ec;
+  color: #c62828;
+}
+
+/* -- Title -- */
+.blog-card-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--black);
+  text-transform: uppercase;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+/* -- Excerpt -- */
+.blog-card-excerpt {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--gray-text);
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* -- Footer (date + link) -- */
+.blog-card-footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.blog-card-date {
+  font-size: 13px;
+  color: var(--gray-text);
+}
+
+.blog-card-link {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--green-brand);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.blog-card-link:hover {
+  color: var(--green-light);
+}
+
+/* ===== CTA SECTION ===== */
+.blog-cta {
+  text-align: center;
+  padding: 0 40px 80px;
+  background: var(--gray-light-bg);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 1200px) {
+  .blog-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .blog-grid-section {
+    padding: 60px 32px;
+  }
+
+  .blog-cta {
+    padding: 0 32px 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .blog-hero {
+    padding: 60px 20px 40px;
+  }
+
+  .blog-hero-desc {
+    font-size: 16px;
+  }
+
+  .blog-grid-section {
+    padding: 48px 20px;
+  }
+
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .blog-cta {
+    padding: 0 20px 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-hero {
+    padding: 48px 16px 32px;
+  }
+
+  .blog-grid-section {
+    padding: 32px 16px;
+  }
+
+  .blog-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .blog-card-title {
+    font-size: 16px;
+  }
+
+  .blog-cta {
+    padding: 0 16px 40px;
+  }
+}

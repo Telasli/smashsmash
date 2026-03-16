@@ -1,0 +1,72 @@
+/* ===== RESET & GLOBAL STYLES ===== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Jost', sans-serif;
+  font-size: 16px;
+  line-height: 25px;
+  color: #707070;
+  background: #fff;
+  overflow-x: hidden;
+}
+
+#root {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  text-align: left;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: 'Jost', sans-serif;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+}
+
+input, select, textarea {
+  font-family: 'Jost', sans-serif;
+  outline: none;
+  border: none;
+  background: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #1a1a1a;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}

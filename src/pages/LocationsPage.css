@@ -1,0 +1,263 @@
+/* ================================================================
+   LOCATIONS PAGE STYLES (SIMPLIFIED)
+   ================================================================ */
+
+/* ===== HERO ===== */
+.loc-hero {
+  text-align: center;
+  padding: 80px 40px 60px;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.loc-hero h1 {
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 800;
+  color: var(--black);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.loc-hero-desc {
+  font-size: 16px;
+  color: var(--gray-text);
+  max-width: 550px;
+  margin: 0 auto;
+  line-height: 26px;
+}
+
+.loc-search-inner {
+  max-width: 600px;
+  margin: 32px auto 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 50px;
+  padding: 6px 6px 6px 24px;
+  transition: border-color 0.2s;
+  background: var(--white);
+}
+
+.loc-search-inner:focus-within {
+  border-color: var(--green-brand);
+}
+
+.loc-search-inner input {
+  flex: 1;
+  padding: 12px 0;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  color: var(--black);
+  font-family: 'Jost', sans-serif;
+  outline: none;
+}
+
+.loc-search-inner input::placeholder {
+  color: #bbb;
+}
+
+.loc-find-btn {
+  background: var(--green-button);
+  color: var(--white);
+  padding: 12px 32px;
+  border-radius: 50px;
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.loc-find-btn:hover {
+  background: var(--green-brand);
+}
+
+/* ===== GRID SECTION ===== */
+.loc-grid-section {
+  padding: 60px 40px 80px;
+  background: var(--gray-light-bg);
+}
+
+.loc-grid {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px 32px;
+}
+
+.loc-grid-card {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.loc-grid-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+.loc-grid-card-image {
+  width: 100%;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  background: #e8e8e8;
+  position: relative;
+}
+
+.loc-status-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.loc-status-badge--open {
+  background: var(--green-button);
+  color: var(--white);
+}
+
+.loc-status-badge--coming {
+  background: var(--amber);
+  color: var(--white);
+}
+
+.loc-card-coming {
+  background: var(--gray-light-bg);
+  color: var(--gray-text);
+  border: 1.5px solid #ddd;
+  cursor: default;
+  font-size: 14px;
+}
+
+.loc-grid-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.loc-grid-card:hover .loc-grid-card-image img {
+  transform: scale(1.05);
+}
+
+.loc-grid-card h4 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--black);
+  text-transform: none;
+  margin: 20px 20px 8px;
+}
+
+.loc-grid-card-addr {
+  font-size: 14px;
+  color: var(--gray-text);
+  line-height: 22px;
+  margin: 0 20px 6px;
+}
+
+.loc-grid-card-hours {
+  font-size: 13px;
+  color: var(--gray-text);
+  margin: 0 20px 4px;
+}
+
+.loc-grid-card-phone {
+  font-size: 14px;
+  color: var(--green-light);
+  font-weight: 600;
+  margin: 0 20px 16px;
+}
+
+.loc-grid-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 20px 20px;
+}
+
+.loc-card-order {
+  padding: 10px 28px;
+  font-size: 14px;
+}
+
+.loc-grid-card-link {
+  font-size: 14px;
+  color: var(--gray-text);
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.loc-grid-card-link:hover {
+  color: var(--black);
+}
+
+.loc-no-results {
+  text-align: center;
+  font-size: 18px;
+  color: var(--gray-text);
+  padding: 60px 0;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+  .loc-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .loc-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .loc-hero {
+    padding: 60px 20px 24px;
+  }
+
+  .loc-search-bar {
+    padding: 0 20px 40px;
+  }
+
+  .loc-grid-section {
+    padding: 40px 20px 60px;
+  }
+
+  .loc-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loc-search-inner {
+    flex-direction: column;
+    border-radius: 16px;
+    padding: 12px;
+  }
+
+  .loc-search-inner input {
+    text-align: center;
+  }
+
+  .loc-find-btn {
+    width: 100%;
+  }
+}
