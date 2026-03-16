@@ -32,7 +32,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="navbar">
+      <nav className={`navbar ${menuOpen ? 'navbar--menu-open' : ''}`}>
         <div className="navbar-inner">
           <Link to="/" className="navbar-logo" onClick={closeMenu}>
             <SmashSmashLogo />

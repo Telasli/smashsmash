@@ -154,11 +154,18 @@
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 999;
   background: var(--white);
   border-bottom: 4px solid var(--green-light);
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   transition: background 0.3s, border-color 0.3s;
+}
+
+.navbar--menu-open {
+  z-index: 1001;
+  background: var(--green-brand);
+  border-bottom-color: var(--green-brand);
+  box-shadow: none;
 }
 
 .navbar-inner {
