@@ -318,6 +318,10 @@
 }
 
 @media (max-width: 1024px) {
+  .menu-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   .menu-featured {
     grid-template-columns: 1fr;
   }

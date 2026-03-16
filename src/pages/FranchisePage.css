@@ -512,3 +512,18 @@
     gap: 24px;
   }
 }
+
+@media (max-width: 480px) {
+  .franchise-stats-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .franchise-hero-bg {
+    padding: 40px 16px;
+    min-height: 260px;
+  }
+
+  .franchise-hero-bg h1 {
+    font-size: 28px;
+  }
+}

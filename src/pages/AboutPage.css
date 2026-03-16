@@ -330,13 +330,19 @@
 }
 
 /* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+  .commitments-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 1024px) {
   .about-hero-inner {
     grid-template-columns: 1fr;
     gap: 40px;
   }
 
-  .commitments-grid {
+  .team-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
