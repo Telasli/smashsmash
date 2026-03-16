@@ -80,22 +80,16 @@ const menuData = {
     items: [
       {
         name: 'SmashBurger\u2122',
-        tag: 'BOEUF HALAL UNIQUEMENT',
-        tagColor: 'green',
         description: 'Cheeseburger avec laitue, tomate, SmashSauce',
         image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&h=400&fit=crop',
       },
       {
         name: 'Double SmashBurger\u2122',
-        tag: 'BOEUF HALAL UNIQUEMENT',
-        tagColor: 'green',
         description: 'Double cheeseburger avec laitue, tomate, SmashSauce',
         image: 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400&h=400&fit=crop',
       },
       {
         name: 'Triple SmashBurger\u2122',
-        tag: 'BOEUF HALAL UNIQUEMENT',
-        tagColor: 'green',
         description: 'Triple cheeseburger avec laitue, tomate, SmashSauce',
         image: 'https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400&h=400&fit=crop',
       },
@@ -141,8 +135,6 @@ const menuData = {
       },
       {
         name: 'Hamburger',
-        tag: 'BOEUF HALAL UNIQUEMENT',
-        tagColor: 'green',
         description: 'Hamburger 100% boeuf Angus sans hormones ni antibiotiques',
         image: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&h=400&fit=crop',
       },
@@ -150,19 +142,15 @@ const menuData = {
   },
   chicken: {
     title: 'MENU POULET',
-    description: "Notre poulet est 100% filet, eleve en plein air, certifie Red Tractor et Halal en tant que produit cru. Bien que nous preparions les produits poulet separement, nos cuisines ne sont pas exclusivement Halal.",
+    description: "Notre poulet est 100% filet, eleve en plein air. Nous preparons tous nos produits poulet avec soin pour garantir la meilleure qualite.",
     items: [
       {
         name: 'Chicken Smash\u2122',
-        tag: 'POULET HALAL UNIQUEMENT',
-        tagColor: 'green',
         description: 'Filet de poulet 100% croustillant avec laitue, cornichons et mayo aux herbes buttermilk, dans un pain toaste.',
         image: 'https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=400&h=400&fit=crop',
       },
       {
         name: 'Chicken Bites',
-        tag: 'POULET HALAL UNIQUEMENT',
-        tagColor: 'green',
         description: "Morceaux de poulet 100% filet, panes a la main, servis avec votre sauce au choix. Par 6 ou 10 avec sauce BBQ ou Miel Moutarde, ou ajoutez notre sauce fromage.",
         image: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=400&h=400&fit=crop',
       },

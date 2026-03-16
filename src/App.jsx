@@ -57,7 +57,7 @@ const menuItems = [
   {
     name: 'SmashBurger',
     image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&h=400&fit=crop',
-    tag: 'Boeuf Halal Uniquement',
+    tag: null,
   },
   {
     name: 'Double SmashBurger',
