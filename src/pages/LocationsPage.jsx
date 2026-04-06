@@ -171,7 +171,7 @@ export default function LocationsPage() {
                   {loc.status === 'open' ? (
                     <>
                       {loc.orderUrl ? (
-                        <a href={loc.orderUrl} target="_blank" rel="noopener noreferrer" className="btn-pill btn-green-solid loc-card-order">Commander en ligne</a>
+                        <a href={loc.orderUrl} className="btn-pill btn-green-solid loc-card-order">Commander en ligne</a>
                       ) : (
                         <span className="btn-pill loc-card-order-disabled">Commande en ligne bientot</span>
                       )}

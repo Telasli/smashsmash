@@ -272,13 +272,14 @@ export default function MenuPage() {
 
       {/* ===== CONTENU DU MENU ===== */}
       <div className="menu-page-content">
-        {categories.map((cat) => {
+        {categories.map((cat, i) => {
           const data = menuData[cat.id]
           if (!data) return null
 
           return (
+            <div key={cat.id}>
+              {i > 0 && <div className="menu-section-divider" />}
             <section
-              key={cat.id}
               id={cat.id}
               ref={(el) => (sectionRefs.current[cat.id] = el)}
               className="menu-section"
@@ -321,10 +322,7 @@ export default function MenuPage() {
                             {item.tag}
                           </span>
                         )}
-                        <div className="menu-item-name-row">
-                          <h3 className="menu-item-name">{item.name}</h3>
-                          {item.price && <span className="menu-item-price">{item.price}</span>}
-                        </div>
+                        <h3 className="menu-item-name">{item.name}</h3>
                         <p className="menu-item-desc">{item.description}</p>
                       </div>
                     </div>
@@ -332,6 +330,7 @@ export default function MenuPage() {
                 </div>
               )}
             </section>
+            </div>
           )
         })}
       </div>
