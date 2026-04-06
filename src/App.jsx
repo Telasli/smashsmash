@@ -64,10 +64,6 @@ const locations = [
     image: '/restau-9.jpg',
   },
   {
-    name: 'Anderlecht (Belgique)',
-    image: '/restau-2.jpg',
-  },
-  {
     name: 'Calais',
     image: '/restau-7.jpg',
   },
@@ -78,6 +74,10 @@ const locations = [
   {
     name: 'Voiron',
     image: '/restau-4.jpg',
+  },
+  {
+    name: 'Dubai',
+    image: '/restau-2.jpg',
   },
 ]
 
@@ -214,7 +214,7 @@ function App() {
 
       {/* ===== 7. LES MEILLEURS BURGERS ===== */}
       <section className="best-burgers">
-        <h2>Les meilleurs burgers a Bordeaux, Saint Germain en Laye, Quimper et Anderlecht</h2>
+        <h2>Les meilleurs burgers a Bordeaux, Saint Germain en Laye, Quimper et Calais</h2>
         <p>
           Passez dans votre SmashSmash le plus proche pour savourer votre burger prefere, des frites
           crinkle-cut et des milkshakes faits maison. Ou restez chez vous et laissez-nous vous
@@ -265,7 +265,7 @@ function App() {
             <p><strong>Bordeaux :</strong> 8h &mdash; 11h</p>
             <p><strong>Saint Germain en Laye :</strong> 8h &mdash; 11h</p>
             <p><strong>Quimper :</strong> 8h30 &mdash; 11h</p>
-            <p><strong>Anderlecht :</strong> 8h &mdash; 11h</p>
+            <p><strong>Calais :</strong> 8h &mdash; 11h</p>
           </div>
           <div>
             <a href="/restaurants" className="btn-pill btn-white">Commander</a>
@@ -310,7 +310,6 @@ function App() {
                   <option>Bordeaux</option>
                   <option>Saint Germain en Laye 78</option>
                   <option>Quimper</option>
-                  <option>Anderlecht (Belgique)</option>
                   <option>Calais</option>
                   <option>Genappe (Belgique)</option>
                   <option>Voiron</option>

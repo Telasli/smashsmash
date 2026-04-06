@@ -30,20 +30,12 @@ const locations = [
     status: 'open',
   },
   {
-    name: 'Anderlecht (Belgique)',
-    address: 'Anderlecht, Bruxelles, Belgique',
-    phone: '+32 2 555 44 32',
-    hours: 'Lundi — Dimanche | 11h - 22h',
-    image: '/restau-2.jpg',
-    status: 'open',
-  },
-  {
     name: 'Calais',
     address: 'Calais, Pas-de-Calais',
     phone: '03 21 34 55 33',
-    hours: 'Bientot disponible',
+    hours: 'Lundi — Dimanche | 11h - 22h',
     image: '/restau-7.jpg',
-    status: 'coming',
+    status: 'open',
   },
   {
     name: 'Genappe (Belgique)',
@@ -59,6 +51,14 @@ const locations = [
     phone: '04 76 55 44 35',
     hours: 'Bientot disponible',
     image: '/restau-4.jpg',
+    status: 'coming',
+  },
+  {
+    name: 'Dubai',
+    address: 'Dubai, Emirats Arabes Unis',
+    phone: '',
+    hours: 'Bientot disponible',
+    image: '/restau-2.jpg',
     status: 'coming',
   },
 ]
