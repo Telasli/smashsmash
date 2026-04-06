@@ -89,7 +89,6 @@ const menuData = {
       { name: 'Big Smash', description: 'Bun, cheddar, double irish steak, oignons, pickles, salade iceberg, sauce biggy.', price: '8,50\u20ac', image: '/menu/big-smash.jpeg' },
       { name: 'Avocado Cheese', description: 'Bun, irish steak, cheddar, oignons, pickles, avocat, salade, tomate, sauce smash.', price: '8,50\u20ac', image: '/menu/avocado-cheese.jpeg' },
       { name: 'Smoke Smash', description: 'Bun, irish steak, bacon, cheddar, oignons, salade, tomate, pickles, smoky sauce.', price: '8,50\u20ac', image: '/menu/smoke-smash.jpeg' },
-      { name: 'Double Ton Smash !', description: 'Supplement steak pour doubler le plaisir.', price: '+2,50\u20ac', image: '/menu/big-smash.jpeg', tag: 'Supplement', tagColor: 'amber' },
     ],
   },
   chicken: {

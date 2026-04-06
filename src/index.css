@@ -14,10 +14,10 @@ html {
 }
 
 body {
-  font-family: 'Jost', sans-serif;
+  font-family: 'DM Sans', 'Jost', sans-serif;
   font-size: 16px;
   line-height: 25px;
-  color: #707070;
+  color: #555;
   background: #fff;
   overflow-x: hidden;
 }
@@ -46,7 +46,7 @@ img {
 }
 
 button {
-  font-family: 'Jost', sans-serif;
+  font-family: 'DM Sans', 'Jost', sans-serif;
   cursor: pointer;
   border: none;
   outline: none;
@@ -57,14 +57,15 @@ button {
 }
 
 input, select, textarea {
-  font-family: 'Jost', sans-serif;
+  font-family: 'DM Sans', 'Jost', sans-serif;
   outline: none;
   border: none;
   background: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #1a1a1a;
+  color: #000106;
+  font-family: 'Cooper Hewitt', 'Jost', sans-serif;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: -0.02em;

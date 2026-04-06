@@ -6,14 +6,16 @@
 /* Pattern utilis pour les sections avec fond vert */
 
 :root {
-  --green-brand: #1F5C30;
-  --green-light: #4A8C2A;
-  --green-button: #3D7B42;
+  --green-brand: #50AF46;
+  --green-light: #50AF46;
+  --green-button: #50AF46;
   --amber: #E8960C;
-  --black: #1a1a1a;
-  --gray-text: #707070;
-  --gray-light-bg: #f0f0f0;
+  --black: #000106;
+  --gray-text: #555;
+  --gray-light-bg: #f4f4f4;
   --white: #ffffff;
+  --font-heading: 'Cooper Hewitt', 'Jost', sans-serif;
+  --font-body: 'DM Sans', 'Jost', sans-serif;
 }
 
 /* Utility: food icon pattern overlay */
@@ -72,7 +74,7 @@
   gap: 8px;
   padding: 14px 32px;
   border-radius: 50px;
-  font-family: 'Jost', sans-serif;
+  font-family: var(--font-heading);
   font-size: 15px;
   font-weight: 700;
   text-transform: uppercase;
