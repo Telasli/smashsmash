@@ -232,82 +232,104 @@
 /* ===== PRODUCT GRID ===== */
 .menu-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
 }
 
 /* ===== PRODUCT CARD ===== */
 .menu-item-card {
-  border: 1px solid #e8e8e8;
-  border-radius: 12px;
+  border: none;
+  border-radius: 16px;
   overflow: hidden;
-  background: var(--white);
-  transition: box-shadow 0.25s, transform 0.25s;
+  background: transparent;
+  transition: transform 0.3s;
   cursor: pointer;
 }
 
 .menu-item-card:hover {
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
+  transform: translateY(-4px);
 }
 
 .menu-item-image {
   width: 100%;
   aspect-ratio: 1;
-  background: #ededed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
+  position: relative;
 }
 
 .menu-item-image img {
-  width: 80%;
-  height: 80%;
-  object-fit: contain;
-  transition: transform 0.3s;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
 }
 
 .menu-item-card:hover .menu-item-image img {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 .menu-item-info {
-  padding: 20px 20px 24px;
+  padding: 16px 16px 20px;
 }
 
 .menu-item-tag {
   display: inline-block;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 6px;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
 }
 
 .menu-item-tag--green {
-  color: var(--green-light);
+  color: var(--white);
+  background: var(--green-light);
+}
+
+.menu-item-tag--amber {
+  color: var(--white);
+  background: var(--amber);
+}
+
+.menu-item-name-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 8px;
 }
 
 .menu-item-name {
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 800;
   color: var(--black);
   text-transform: none;
   letter-spacing: -0.01em;
-  line-height: 1.2;
-  margin-bottom: 12px;
+  line-height: 1.25;
+}
+
+.menu-item-price {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--green-light);
+  white-space: nowrap;
 }
 
 .menu-item-desc {
-  font-size: 14px;
-  line-height: 22px;
+  font-size: 12px;
+  line-height: 1.5;
   color: var(--gray-text);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* ===== SECTION DIVIDER ===== */
 .menu-section + .menu-section {
-  border-top: 4px solid var(--green-light);
+  margin-top: 60px;
 }
 
 /* ===== RESPONSIVE ===== */

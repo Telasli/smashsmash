@@ -10,7 +10,7 @@ const locations = [
     address: 'Bordeaux, France',
     phone: '05 56 44 55 29',
     hours: 'Lundi — Dimanche | 11h - 22h',
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500&h=350&fit=crop',
+    image: '/restau-bordeaux-1.jpg',
     status: 'open',
   },
   {
@@ -18,7 +18,7 @@ const locations = [
     address: 'Saint-Germain-en-Laye, Yvelines (78)',
     phone: '01 39 73 55 30',
     hours: 'Lundi — Dimanche | 11h - 22h',
-    image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=500&h=350&fit=crop',
+    image: '/restau-5.jpg',
     status: 'open',
   },
   {
@@ -26,7 +26,7 @@ const locations = [
     address: 'Quimper, Finistere',
     phone: '02 98 55 44 31',
     hours: 'Lundi — Dimanche | 11h - 22h',
-    image: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=500&h=350&fit=crop',
+    image: '/restau-9.jpg',
     status: 'open',
   },
   {
@@ -34,7 +34,7 @@ const locations = [
     address: 'Anderlecht, Bruxelles, Belgique',
     phone: '+32 2 555 44 32',
     hours: 'Lundi — Dimanche | 11h - 22h',
-    image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=500&h=350&fit=crop',
+    image: '/restau-2.jpg',
     status: 'open',
   },
   {
@@ -42,7 +42,7 @@ const locations = [
     address: 'Calais, Pas-de-Calais',
     phone: '03 21 34 55 33',
     hours: 'Bientot disponible',
-    image: 'https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?w=500&h=350&fit=crop',
+    image: '/restau-7.jpg',
     status: 'coming',
   },
   {
@@ -50,7 +50,7 @@ const locations = [
     address: 'Genappe, Brabant wallon, Belgique',
     phone: '+32 67 55 44 34',
     hours: 'Bientot disponible',
-    image: 'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=500&h=350&fit=crop',
+    image: '/restau-8.jpg',
     status: 'coming',
   },
   {
@@ -58,7 +58,7 @@ const locations = [
     address: 'Voiron, Isere',
     phone: '04 76 55 44 35',
     hours: 'Bientot disponible',
-    image: 'https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=500&h=350&fit=crop',
+    image: '/restau-4.jpg',
     status: 'coming',
   },
 ]

@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation } from 'swiper/modules'
+import { Navigation, Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
 
@@ -39,89 +39,52 @@ function BurgerIcon({ size = 48, color = 'white' }) {
 
 /* ---------- Donnees du carousel menu ---------- */
 const menuItems = [
-  {
-    name: 'Milkshakes',
-    image: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&h=400&fit=crop',
-    tag: null,
-  },
-  {
-    name: 'Frites au Fromage',
-    image: 'https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=400&h=400&fit=crop',
-    tag: null,
-  },
-  {
-    name: 'SmokeSmash',
-    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop',
-    tag: null,
-  },
-  {
-    name: 'SmashBurger',
-    image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&h=400&fit=crop',
-    tag: null,
-  },
-  {
-    name: 'Double SmashBurger',
-    image: 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400&h=400&fit=crop',
-    tag: null,
-  },
-  {
-    name: 'Chicken Smash',
-    image: 'https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=400&h=400&fit=crop',
-    tag: null,
-  },
-  {
-    name: 'Hot Dog',
-    image: 'https://images.unsplash.com/photo-1612392062126-2f5b0ced0497?w=400&h=400&fit=crop',
-    tag: null,
-  },
-  {
-    name: 'Concrete',
-    image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=400&fit=crop',
-    tag: null,
-  },
+  { name: 'Smash Burger', image: '/menu/smash-burger.jpeg' },
+  { name: 'Smoke Smash', image: '/menu/smoke-smash.jpeg' },
+  { name: 'Big Smash', image: '/menu/big-smash.jpeg' },
+  { name: 'Chick\u2019n Smash', image: '/menu/chickn-smash.jpeg' },
+  { name: 'Frites Cheddar', image: '/menu/frites-cheddar.jpg' },
+  { name: 'Hot Dog Classic', image: '/menu/hotdog-classic.jpeg' },
+  { name: 'Shake Fraise', image: '/menu/shake-fraise.jpeg' },
+  { name: 'Smice', image: '/menu/smice.jpeg' },
 ]
 
 /* ---------- Donnees du carousel locations ---------- */
 const locations = [
   {
     name: 'Bordeaux',
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop',
+    image: '/restau-bordeaux-1.jpg',
   },
   {
     name: 'Saint Germain en Laye 78',
-    image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=300&fit=crop',
+    image: '/restau-5.jpg',
   },
   {
     name: 'Quimper',
-    image: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=400&h=300&fit=crop',
+    image: '/restau-9.jpg',
   },
   {
     name: 'Anderlecht (Belgique)',
-    image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=400&h=300&fit=crop',
+    image: '/restau-2.jpg',
   },
   {
     name: 'Calais',
-    image: 'https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?w=400&h=300&fit=crop',
+    image: '/restau-7.jpg',
   },
   {
     name: 'Genappe (Belgique)',
-    image: 'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=400&h=300&fit=crop',
+    image: '/restau-8.jpg',
   },
   {
     name: 'Voiron',
-    image: 'https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=400&h=300&fit=crop',
+    image: '/restau-4.jpg',
   },
 ]
 
 /* ---------- Donnees Instagram ---------- */
-const instaPosts = [
-  'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=300&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=300&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1550547660-d9450f859349?w=300&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=300&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=300&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=300&h=300&fit=crop',
-]
+const galleryImages = Array.from({ length: 30 }, (_, i) =>
+  `/gallery/street-${String(i + 1).padStart(2, '0')}.jpeg`
+)
 
 /* ================================================================
    COMPOSANT PRINCIPAL
@@ -135,24 +98,28 @@ function App() {
   return (
     <>
       {/* ===== 3. SECTION HERO ===== */}
-      <section className="hero">
-        <div className="hero-left pattern-lines">
-          <h1>Une envie de burger irresistible ?</h1>
-          <p>Notre menu a duree limitee est arrive !</p>
-          <div className="hero-buttons">
+      <section className="hero-video-hero">
+        <video
+          className="hero-video-bg"
+          src="/video-presentation.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+        <div className="hero-video-overlay" />
+        <div className="hero-video-content">
+          <h1 className="hero-anim hero-anim-1">Une envie de burger <span className="hero-highlight">irresistible</span> ?</h1>
+          <p className="hero-anim hero-anim-2">Notre menu a duree limitee est arrive !</p>
+          <div className="hero-buttons hero-anim hero-anim-3">
             <a href="/restaurants" className="btn-pill btn-white">Commander</a>
             <a href="/menu" className="btn-pill btn-outline-white">Voir le Menu</a>
           </div>
         </div>
-
-        <div className="hero-right hero-right--image-only pattern-lines">
-          <div className="hero-food-image">
-            <img
-              src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=600&h=450&fit=crop"
-              alt="Burgers et frites sur un plateau"
-              loading="lazy"
-            />
-          </div>
+        <div className="hero-scroll-hint">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round">
+            <path d="M12 5v14M5 12l7 7 7-7" />
+          </svg>
         </div>
       </section>
 
@@ -230,8 +197,8 @@ function App() {
 
         <div className="blog-image">
           <img
-            src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=500&fit=crop"
-            alt="Interieur du SmashSmash King's Cross avec fresque murale"
+            src="/restau-1.jpg"
+            alt="Interieur du SmashSmash"
             loading="lazy"
           />
         </div>
@@ -282,7 +249,7 @@ function App() {
       <section className="breakfast">
         <div className="breakfast-image">
           <img
-            src="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=700&h=600&fit=crop"
+            src="/smash-bacon-burger.jpg"
             alt="Burger petit-dejeuner avec oeuf et bacon"
             loading="lazy"
           />
@@ -382,7 +349,7 @@ function App() {
 
         <div className="newsletter-image">
           <img
-            src="https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=700&h=700&fit=crop"
+            src="/smash-box-togo.jpg"
             alt="Burgers et frites dans un emballage a emporter"
             loading="lazy"
           />
@@ -408,8 +375,8 @@ function App() {
 
         <div className="sustainability-image">
           <img
-            src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&h=450&fit=crop"
-            alt="Enseigne neon Stand For Something Good"
+            src="/restau-bordeaux-2.jpg"
+            alt="Terrasse SmashSmash Bordeaux"
             loading="lazy"
           />
         </div>
@@ -421,39 +388,36 @@ function App() {
         <a href="/restaurants" className="btn-pill btn-green-solid delivery-cta">Commander</a>
       </section>
 
-      {/* ===== 12. SECTION INSTAGRAM ===== */}
-      <section className="instagram-section">
-        <div className="insta-profile">
-          <div className="insta-avatar">
-            <span style={{ color: 'white', fontWeight: 900, fontSize: 22 }}>S</span>
-          </div>
-          <div className="insta-info">
-            <h4>
-              SmashSmash
-              <span className="verified">
-                <svg viewBox="0 0 24 24">
-                  <path d="M9 16.17 L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
-                </svg>
-              </span>
-            </h4>
-            <p>@smashsmash_fr &middot; 5K Publications</p>
-          </div>
-          <button className="insta-follow-btn">
-            <svg viewBox="0 0 24 24">
-              <rect x="2" y="2" width="20" height="20" rx="5" />
-              <circle cx="12" cy="12" r="5" fill="none" stroke="white" strokeWidth="1.5" />
-              <circle cx="17.5" cy="6.5" r="1.5" />
-            </svg>
-            Suivre
-          </button>
-        </div>
+      {/* ===== 12. SECTION GALERIE ===== */}
+      <section className="gallery-section">
+        <h2>Notre Galerie</h2>
+        <p>Decouvrez SmashSmash en images</p>
 
-        <div className="insta-posts">
-          {instaPosts.map((src, i) => (
-            <a href="#" className="insta-post" key={i}>
-              <img src={src} alt={`Publication Instagram ${i + 1}`} loading="lazy" />
-            </a>
-          ))}
+        <div className="gallery-swiper-wrapper">
+          <Swiper
+            modules={[Navigation, Autoplay]}
+            spaceBetween={12}
+            slidesPerView={5}
+            loop={true}
+            navigation={false}
+            speed={7000}
+            autoplay={{ delay: 0, disableOnInteraction: false }}
+            breakpoints={{
+              0: { slidesPerView: 1.5, spaceBetween: 8 },
+              480: { slidesPerView: 2.5, spaceBetween: 10 },
+              768: { slidesPerView: 3.5, spaceBetween: 12 },
+              1024: { slidesPerView: 4.5, spaceBetween: 12 },
+              1280: { slidesPerView: 5.5, spaceBetween: 14 },
+            }}
+          >
+            {galleryImages.map((src, i) => (
+              <SwiperSlide key={i}>
+                <div className="gallery-slide">
+                  <img src={src} alt={`SmashSmash photo ${i + 1}`} loading="lazy" />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </section>
 

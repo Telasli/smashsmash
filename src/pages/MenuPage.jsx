@@ -54,187 +54,126 @@ const CategoryIcons = {
    DONNEES DU MENU
    ================================================================ */
 const categories = [
-  { id: 'limited', name: 'Edition Limitee', icon: 'star' },
-  { id: 'burgers', name: 'Menu Burgers', icon: 'burger' },
-  { id: 'chicken', name: 'Menu Poulet', icon: 'chicken' },
-  { id: 'sides', name: 'Accompagnements', icon: 'fries' },
-  { id: 'hotdog', name: 'Menu Hot Dog', icon: 'hotdog' },
-  { id: 'shakes', name: 'Shakes + Frozen Custard', icon: 'shake' },
-  { id: 'drinks', name: 'Boissons', icon: 'drink' },
+  { id: 'box', name: 'Nos Box', icon: 'star' },
+  { id: 'burgers', name: 'Burgers', icon: 'burger' },
+  { id: 'chicken', name: 'Poulet', icon: 'chicken' },
+  { id: 'hotdog', name: 'Hot Dog', icon: 'hotdog' },
+  { id: 'frites', name: 'Nos Frites', icon: 'fries' },
+  { id: 'salade', name: 'Salade', icon: 'fries' },
+  { id: 'petitesfaims', name: 'Petites Faims', icon: 'fries' },
+  { id: 'boissons', name: 'Boissons', icon: 'drink' },
+  { id: 'shakes', name: 'Shakes Smash', icon: 'shake' },
+  { id: 'smice', name: 'Smice', icon: 'shake' },
+  { id: 'veggies', name: 'Veggies', icon: 'burger' },
 ]
 
 const menuData = {
-  limited: {
-    title: 'EDITION LIMITEE',
-    featured: {
-      title: 'French Onion, Totalement Charge',
-      subtitle: 'EDITION LIMITEE',
-      description: "Dites bonjour a notre menu French Onion en edition limitee. C'est fondant, oignonne, croustillant et incroyablement riche. Du comfort food, mais en version extra.",
-      image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&h=600&fit=crop',
-    },
-    items: [],
+  box: {
+    title: 'NOS BOX',
+    description: "Composez votre box avec les produits de votre choix : burgers, frites et boissons.",
+    items: [
+      { name: '2 for U', description: '2 produits au choix + 1 frite + 1 boisson 33cl', price: '16,50\u20ac', image: '/menu/box-4foryou.jpg' },
+      { name: '4 for U', description: '4 produits au choix + 2 frites + 2 boissons 33cl', price: '32,00\u20ac', image: '/menu/box-4foryou.jpg' },
+      { name: 'Big Box', description: '10 produits au choix + 5 frites + 5 boissons 33cl', price: '84,90\u20ac', image: '/menu/box-4foryou.jpg' },
+      { name: 'Kid Box', description: 'Saucisse volaille + 1 frite + 1 boisson 33cl', price: '5,90\u20ac', image: '/menu/hotdog-classic.jpeg' },
+    ],
   },
   burgers: {
-    title: 'MENU BURGERS',
-    description: "Tous nos burgers sont cuits a point sauf demande contraire, servis sur un pain pomme de terre toaste. Parcourez notre menu burgers ci-dessous.",
+    title: 'BURGERS',
+    description: "+4,50\u20ac frites et boisson. Tous nos burgers sont prepares avec du bun, irish steak et des ingredients frais.",
     items: [
-      {
-        name: 'SmashBurger\u2122',
-        description: 'Cheeseburger avec laitue, tomate, SmashSauce',
-        image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&h=400&fit=crop',
-      },
-      {
-        name: 'Double SmashBurger\u2122',
-        description: 'Double cheeseburger avec laitue, tomate, SmashSauce',
-        image: 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400&h=400&fit=crop',
-      },
-      {
-        name: 'Triple SmashBurger\u2122',
-        description: 'Triple cheeseburger avec laitue, tomate, SmashSauce',
-        image: 'https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400&h=400&fit=crop',
-      },
-      {
-        name: 'SmokeSmash',
-        description: 'Cheeseburger avec bacon fume au bois de pommier, laitue, tomate, piments cerises haches, SmashSauce',
-        image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop',
-      },
-      {
-        name: 'Double SmokeSmash',
-        description: 'Double cheeseburger avec bacon fume au bois de pommier, piments cerises haches, SmashSauce',
-        image: 'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400&h=400&fit=crop',
-      },
-      {
-        name: 'Triple SmokeSmash',
-        description: 'Triple cheeseburger avec bacon fume au bois de pommier, piments cerises haches, SmashSauce',
-        image: 'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=400&h=400&fit=crop',
-      },
-      {
-        name: 'SmashMeister\u2122',
-        description: 'Cheeseburger avec echalotes croustillantes marinees a la SmashMeister Ale, SmashSauce',
-        image: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=400&h=400&fit=crop',
-      },
-      {
-        name: 'Double SmashMeister\u2122',
-        description: 'Double cheeseburger avec echalotes croustillantes marinees a la SmashMeister Ale, SmashSauce',
-        image: 'https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&h=400&fit=crop',
-      },
-      {
-        name: 'Smash Stack',
-        description: "SmashBurger avec un champignon portobello frit et farci au fromage fondu",
-        image: 'https://images.unsplash.com/photo-1608767221051-2b9d18f35a2f?w=400&h=400&fit=crop',
-      },
-      {
-        name: 'Veggie Smash',
-        description: 'Galette de legumes croustillante panee avec laitue, tomate, SmashSauce vegan',
-        image: 'https://images.unsplash.com/photo-1520072959219-c595e6cdc073?w=400&h=400&fit=crop',
-      },
-      {
-        name: "'Shroom Burger",
-        description: 'Champignon portobello frit et farci au fromage fondu avec laitue, tomate, SmashSauce',
-        image: 'https://images.unsplash.com/photo-1525059696034-4967a8e1dca2?w=400&h=400&fit=crop',
-      },
-      {
-        name: 'Hamburger',
-        description: 'Hamburger 100% boeuf Angus sans hormones ni antibiotiques',
-        image: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&h=400&fit=crop',
-      },
+      { name: 'Smash Burger', description: 'Bun, irish steak, cheddar, oignons, salade, tomate, pickles, sauce smash.', price: '6,90\u20ac', image: '/menu/smash-burger.jpeg' },
+      { name: 'Cheese Burger', description: 'Bun, irish steak, cheddar, pickles, oignons, sauce ketchup moutarde.', price: '6,50\u20ac', image: '/menu/cheese-burger.jpeg' },
+      { name: 'Chili Smash', description: 'Bun, irish steak, bacon, tomate, cheddar, salade, jalapenos, oignons, pickles, sauce spicy.', price: '8,50\u20ac', image: '/menu/chili-smash.jpeg' },
+      { name: 'Fungi Smash', description: 'Bun, irish steak, cheddar, salade, tomate, oignons, champignons grilles, pickles, smoky sauce.', price: '7,50\u20ac', image: '/menu/fungi-smash.jpeg' },
+      { name: 'Big Smash', description: 'Bun, cheddar, double irish steak, oignons, pickles, salade iceberg, sauce biggy.', price: '8,50\u20ac', image: '/menu/big-smash.jpeg' },
+      { name: 'Avocado Cheese', description: 'Bun, irish steak, cheddar, oignons, pickles, avocat, salade, tomate, sauce smash.', price: '8,50\u20ac', image: '/menu/avocado-cheese.jpeg' },
+      { name: 'Smoke Smash', description: 'Bun, irish steak, bacon, cheddar, oignons, salade, tomate, pickles, smoky sauce.', price: '8,50\u20ac', image: '/menu/smoke-smash.jpeg' },
+      { name: 'Double Ton Smash !', description: 'Supplement steak pour doubler le plaisir.', price: '+2,50\u20ac', image: '/menu/big-smash.jpeg', tag: 'Supplement', tagColor: 'amber' },
     ],
   },
   chicken: {
-    title: 'MENU POULET',
-    description: "Notre poulet est 100% filet, eleve en plein air. Nous preparons tous nos produits poulet avec soin pour garantir la meilleure qualite.",
+    title: 'POULET',
+    description: "Nos burgers poulet sont prepares avec du bun et du crispy chicken de qualite.",
     items: [
-      {
-        name: 'Chicken Smash\u2122',
-        description: 'Filet de poulet 100% croustillant avec laitue, cornichons et mayo aux herbes buttermilk, dans un pain toaste.',
-        image: 'https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=400&h=400&fit=crop',
-      },
-      {
-        name: 'Chicken Bites',
-        description: "Morceaux de poulet 100% filet, panes a la main, servis avec votre sauce au choix. Par 6 ou 10 avec sauce BBQ ou Miel Moutarde, ou ajoutez notre sauce fromage.",
-        image: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=400&h=400&fit=crop',
-      },
-    ],
-  },
-  sides: {
-    title: 'ACCOMPAGNEMENTS',
-    items: [
-      {
-        name: 'Frites',
-        description: 'Croustillantes, croquantes, un pur delice de pomme de terre',
-        image: 'https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=400&h=400&fit=crop',
-      },
-      {
-        name: 'Frites au Fromage',
-        description: 'Croustillantes, croquantes, un pur delice de pomme de terre nappes de notre melange special de cheddar et fromage americain',
-        image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&h=400&fit=crop',
-      },
-      {
-        name: 'Onion Rings',
-        description: "Rondelles d'oignon croustillantes panees a la biere, faites a partir d'oignons doux espagnols, servies avec une sauce creme aigre et oignon.",
-        image: 'https://images.unsplash.com/photo-1639024471283-03518883512d?w=400&h=400&fit=crop',
-      },
+      { name: 'Hot Chick\u2019n', description: 'Bun, crispy chicken, cheddar, jalapenos, tomate, oignons, salade, pickles, sauce spicy.', price: '6,90\u20ac', image: '/menu/hot-chickn.jpeg' },
+      { name: 'Avocado Chick\u2019n', description: 'Bun, crispy chicken, cheddar, oignons, avocat, salade, tomate, pickles, sauce smash.', price: '7,90\u20ac', image: '/menu/avocado-chickn.jpeg' },
+      { name: 'Chick\u2019n Smash', description: 'Bun, crispy chicken, cheddar, oignons, tomate, salade, pickles, sauce smash.', price: '6,90\u20ac', image: '/menu/chickn-smash.jpeg' },
+      { name: 'BBQ Smash', description: 'Bun, crispy chicken, cheddar, bacon, salade, tomate, oignons, pickles, sauce barbecue.', price: '7,90\u20ac', image: '/menu/bbq-smash.jpeg' },
     ],
   },
   hotdog: {
-    title: 'MENU HOT DOG',
+    title: 'HOT DOG',
+    description: "+4,50\u20ac frites et boisson. Nos hot dogs sont prepares avec une saucisse de boeuf de qualite.",
     items: [
-      {
-        name: 'Hot Dog',
-        description: 'Authentique hot dog allemand 100% boeuf',
-        image: 'https://images.unsplash.com/photo-1612392062126-2f5b0ced0497?w=400&h=400&fit=crop',
-      },
+      { name: 'Classic', description: 'Saucisse de boeuf, pickles, ketchup, moutarde.', price: '5,00\u20ac', image: '/menu/hotdog-classic.jpeg' },
+      { name: 'New York Style', description: 'Saucisse de boeuf, ketchup, moutarde, relish pickles, oignon crispy.', price: '5,40\u20ac', image: '/menu/hotdog-newyork.jpeg' },
+      { name: 'Spicy Bird', description: 'Saucisse de boeuf, sauce cheddar, ketchup, moutarde, relish pickles, jalapenos, oignon crispy.', price: '6,00\u20ac', image: '/menu/hotdog-spicy.jpeg' },
+      { name: 'Bacon Cheese', description: 'Saucisse de boeuf, bacon de boeuf, sauce cheddar, ketchup, moutarde, relish pickles, oignon crispy.', price: '6,40\u20ac', image: '/menu/hotdog-bacon.jpeg' },
+    ],
+  },
+  frites: {
+    title: 'NOS FRITES',
+    items: [
+      { name: 'Nature ou Epice', description: 'Frites crinkle-cut croustillantes, nature ou assaisonnees aux epices.', price: '2,50\u20ac', image: '/menu/frites-nature.jpg' },
+      { name: 'Cheddar', description: 'Frites nappees de sauce cheddar fondante.', price: '3,50\u20ac', image: '/menu/frites-cheddar.jpg' },
+      { name: 'Cheddar Piment', description: 'Frites nappees de sauce cheddar et piments jalapenos.', price: '4,00\u20ac', image: '/menu/frites-cheddar-piment.jpg' },
+      { name: 'Cheddar & Bacon', description: 'Frites nappees de sauce cheddar et morceaux de bacon croustillant.', price: '4,50\u20ac', image: '/menu/frites-cheddar-bacon.jpg' },
+    ],
+  },
+  salade: {
+    title: 'SALADE',
+    items: [
+      { name: 'Crousti', description: 'Salade, tomate cerise, des de fromage, poulet pane croustillant.', price: '8,00\u20ac', image: '/menu/salade-crousti.jpeg' },
+    ],
+  },
+  petitesfaims: {
+    title: 'PETITES FAIMS',
+    items: [
+      { name: 'Nuggets x5', description: '5 nuggets de poulet croustillants.', price: '4,20\u20ac', image: '/menu/nuggets.jpeg' },
+      { name: 'Mozza Sticks x4', description: '4 batonnets de mozzarella panes et frits.', price: '4,20\u20ac', image: '/menu/mozza-sticks.jpeg' },
+      { name: 'Tenders x4', description: '4 tenders de poulet croustillants.', price: '5,90\u20ac', image: '/menu/tenders.jpeg' },
+    ],
+  },
+  boissons: {
+    title: 'BOISSONS',
+    items: [
+      { name: 'Lemonaid', description: 'Limonade artisanale.', price: '3,50\u20ac', image: '/menu/lemonaid.jpeg' },
+      { name: 'Lemonaid Orange Sanguine', description: 'Limonade artisanale orange sanguine.', price: '3,50\u20ac', image: '/menu/lemonaid-orange.jpeg' },
+      { name: 'Coca', description: 'Coca-Cola 33cl.', price: '2,00\u20ac', image: '/menu/coca.jpeg' },
+      { name: 'Coca Zero', description: 'Coca-Cola Zero 33cl.', price: '2,00\u20ac', image: '/menu/coca-zero.jpeg' },
+      { name: 'Fuze Tea', description: 'The glace peche 33cl.', price: '2,00\u20ac', image: '/menu/fuze-tea.jpeg' },
+      { name: 'Oasis', description: 'Oasis tropical 33cl.', price: '2,00\u20ac', image: '/menu/oasis.jpeg' },
+      { name: 'St Pellegrino', description: 'Eau gazeuse St Pellegrino.', price: '2,00\u20ac', image: '/menu/st-pellegrino.jpeg' },
+      { name: 'The Glace', description: 'The glace maison.', price: '2,00\u20ac', image: '/menu/the-glace.jpeg' },
+      { name: 'Eau', description: 'Eau minerale 50cl.', price: '2,00\u20ac', image: '/menu/eau.jpeg' },
     ],
   },
   shakes: {
-    title: 'SHAKES + FROZEN CUSTARD',
-    description: "Nos milkshakes sont faits main avec du vrai lait et notre Frozen Custard cremeux. Notre Frozen Custard est prepare frais chaque jour sur place.",
+    title: 'SHAKES SMASH',
+    description: "Saveur au choix : Fraise, Vanille ou Chocolat. Supplement topping 0,80\u20ac.",
     items: [
-      {
-        name: 'Shake Vanille',
-        description: 'Milkshake fait main avec du Frozen Custard vanille et du lait entier',
-        image: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&h=400&fit=crop',
-      },
-      {
-        name: 'Shake Chocolat',
-        description: 'Milkshake fait main avec du Frozen Custard chocolat et du lait entier',
-        image: 'https://images.unsplash.com/photo-1541658016709-82535e94bc69?w=400&h=400&fit=crop',
-      },
-      {
-        name: 'Shake Caramel',
-        description: 'Milkshake fait main avec du Frozen Custard caramel et du lait entier',
-        image: 'https://images.unsplash.com/photo-1577805947697-89e18249d767?w=400&h=400&fit=crop',
-      },
-      {
-        name: 'Shake Fraise',
-        description: 'Milkshake fait main avec du Frozen Custard fraise et du lait entier',
-        image: 'https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=400&h=400&fit=crop',
-      },
-      {
-        name: 'Concrete',
-        description: 'Frozen Custard dense et cremeux melange avec des garnitures au choix',
-        image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=400&fit=crop',
-      },
+      { name: 'Shake Fraise', description: 'Milkshake fait maison a la fraise avec chantilly.', price: '5,90\u20ac', image: '/menu/shake-fraise.jpeg' },
+      { name: 'Shake Vanille', description: 'Milkshake fait maison a la vanille avec chantilly.', price: '5,90\u20ac', image: '/menu/shake-fraise.jpeg' },
+      { name: 'Shake Chocolat', description: 'Milkshake fait maison au chocolat avec chantilly.', price: '5,90\u20ac', image: '/menu/shake-fraise.jpeg' },
     ],
   },
-  drinks: {
-    title: 'BOISSONS',
+  smice: {
+    title: 'SMICE',
+    description: "1 coulis + 1 croquant. Supplement topping 0,90\u20ac. Topping coulant : Caramel, Fraise, Chocolat. Topping croquant : Daim, Eclat de cacahuete, Crunch, M&M\u2019s, Cookie Granola.",
     items: [
-      {
-        name: 'Limonade Maison',
-        description: 'Limonade fraichement preparee sur place chaque jour',
-        image: 'https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=400&h=400&fit=crop',
-      },
-      {
-        name: 'The Glace',
-        description: 'The glace fraichement infuse, non sucre',
-        image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&h=400&fit=crop',
-      },
-      {
-        name: 'Boissons Gazeuses',
-        description: 'Coca-Cola, Sprite, Fanta et plus encore',
-        image: 'https://images.unsplash.com/photo-1581006852262-e4307cf6283a?w=400&h=400&fit=crop',
-      },
+      { name: 'Smice', description: 'Glace soft avec 1 coulis et 1 topping croquant au choix.', price: '3,90\u20ac', image: '/menu/smice.jpeg' },
+      { name: 'Smice Croquant', description: 'Glace soft avec coulis caramel et eclats croquants.', price: '3,90\u20ac', image: '/menu/smice-croquant.jpeg' },
+    ],
+  },
+  veggies: {
+    title: 'VEGGIES',
+    description: "+4,50\u20ac frites et boisson. Nos options vegetariennes et veganes.",
+    items: [
+      { name: 'Veggie Smash', description: 'Sauce smash, oignons, cornichons, avocat, champignons grilles, cheddar, salade.', price: '7,50\u20ac', image: '/menu/vegee.jpeg' },
+      { name: 'Veggie Chick\u2019n Smash', description: 'Sauce smash, oignons, pickles, Chicken veggie, cheddar, salade, tomate.', price: '11,50\u20ac', image: '/menu/vegee.jpeg' },
+      { name: 'Veggie Beef Smash', description: 'Sauce smash, oignons, cornichons, steak veggie, cheddar, salade, tomate.', price: '9,50\u20ac', image: '/menu/vegee.jpeg' },
+      { name: 'Nuggets Veggie x5', description: '5 nuggets vegetariens croustillants.', price: '6,00\u20ac', image: '/menu/nuggets.jpeg' },
     ],
   },
 }
@@ -383,7 +322,10 @@ export default function MenuPage() {
                             {item.tag}
                           </span>
                         )}
-                        <h3 className="menu-item-name">{item.name}</h3>
+                        <div className="menu-item-name-row">
+                          <h3 className="menu-item-name">{item.name}</h3>
+                          {item.price && <span className="menu-item-price">{item.price}</span>}
+                        </div>
                         <p className="menu-item-desc">{item.description}</p>
                       </div>
                     </div>

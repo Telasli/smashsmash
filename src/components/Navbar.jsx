@@ -38,9 +38,9 @@ export default function Navbar() {
             <SmashSmashLogo />
           </Link>
           <div className="navbar-links">
+            <NavLink to="/">Accueil</NavLink>
             <NavLink to="/menu">Menu</NavLink>
             <NavLink to="/restaurants">Nos Restaurants</NavLink>
-            <NavLink to="/blog">Blog</NavLink>
             <NavLink to="/notre-histoire">Notre Histoire</NavLink>
             <NavLink to="/franchise">Devenir Franchise</NavLink>
             <Link to="/restaurants" className="btn-order">Commander</Link>
@@ -59,9 +59,9 @@ export default function Navbar() {
       <div className={`mobile-menu ${menuOpen ? 'mobile-menu--open' : ''}`}>
         <div className="mobile-menu-content">
           <div className="mobile-menu-nav">
+            <NavLink to="/" end onClick={closeMenu}>Accueil</NavLink>
             <NavLink to="/menu" onClick={closeMenu}>Menu</NavLink>
             <NavLink to="/restaurants" onClick={closeMenu}>Nos Restaurants</NavLink>
-            <NavLink to="/blog" onClick={closeMenu}>Blog</NavLink>
             <NavLink to="/notre-histoire" onClick={closeMenu}>Notre Histoire</NavLink>
             <NavLink to="/franchise" onClick={closeMenu}>Devenir Franchise</NavLink>
           </div>

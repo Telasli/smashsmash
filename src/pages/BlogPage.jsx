@@ -7,7 +7,7 @@ import './BlogPage.css'
 const articles = [
   {
     id: 1,
-    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&h=400&fit=crop',
+    image: '/smash-cheeseburger.jpg',
     category: 'recettes',
     categoryLabel: 'Recettes',
     title: 'Le secret de notre sauce SmashSmash',
@@ -16,7 +16,7 @@ const articles = [
   },
   {
     id: 2,
-    image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&h=400&fit=crop',
+    image: '/restau-6.jpg',
     category: 'actualites',
     categoryLabel: 'Actualites',
     title: 'Nouveau restaurant a Toulouse',
@@ -25,7 +25,7 @@ const articles = [
   },
   {
     id: 3,
-    image: 'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=600&h=400&fit=crop',
+    image: '/smash-bite.jpg',
     category: 'coulisses',
     categoryLabel: 'Coulisses',
     title: 'Une journee avec notre chef Lucas',
@@ -34,7 +34,7 @@ const articles = [
   },
   {
     id: 4,
-    image: 'https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=600&h=400&fit=crop',
+    image: '/smash-box-togo.jpg',
     category: 'evenements',
     categoryLabel: 'Evenements',
     title: 'Festival du burger : on y sera',
@@ -43,7 +43,7 @@ const articles = [
   },
   {
     id: 5,
-    image: 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=600&h=400&fit=crop',
+    image: '/smash-burger-tray.jpg',
     category: 'recettes',
     categoryLabel: 'Recettes',
     title: 'Reussir son smash burger maison',
@@ -52,7 +52,7 @@ const articles = [
   },
   {
     id: 6,
-    image: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=600&h=400&fit=crop',
+    image: '/smash-friends-eating.jpg',
     category: 'actualites',
     categoryLabel: 'Actualites',
     title: 'Notre engagement zero dechet',
@@ -61,7 +61,7 @@ const articles = [
   },
   {
     id: 7,
-    image: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=600&h=400&fit=crop',
+    image: '/smash-bacon-burger.jpg',
     category: 'coulisses',
     categoryLabel: 'Coulisses',
     title: 'Comment nous selectionnons notre viande',
@@ -70,7 +70,7 @@ const articles = [
   },
   {
     id: 8,
-    image: 'https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=600&h=400&fit=crop',
+    image: '/smash-chicken.jpg',
     category: 'evenements',
     categoryLabel: 'Evenements',
     title: 'Soiree de lancement : edition limitee truffe',

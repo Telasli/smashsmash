@@ -375,157 +375,108 @@
 }
 
 /* ===== 3. HERO SECTION ===== */
-.hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 600px;
-}
-
-.hero-left {
-  background: var(--green-light);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 60px 60px 60px 80px;
+.hero-video-hero {
   position: relative;
+  height: 92vh;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
 }
 
-.hero-left h1 {
-  color: var(--white);
-  font-size: clamp(36px, 3.5vw, 56px);
-  font-weight: 900;
-  line-height: 1.05;
-  margin-bottom: 16px;
-  max-width: 500px;
+.hero-video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
 }
 
-.hero-left p {
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.hero-video-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 40px 24px;
+  max-width: 700px;
+}
+
+.hero-video-content h1 {
   color: var(--white);
-  font-size: 20px;
-  font-weight: 400;
-  margin-bottom: 36px;
-  opacity: 0.9;
+  font-size: clamp(44px, 5.5vw, 78px);
+  font-weight: 900;
+  line-height: 1.05;
+  margin-bottom: 24px;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.6), 0 1px 4px rgba(0, 0, 0, 0.4);
+  letter-spacing: -0.02em;
+}
+
+.hero-highlight {
+  color: var(--green-light);
+}
+
+.hero-video-content p {
+  color: var(--white);
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 500;
+  margin-bottom: 44px;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .hero-buttons {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
-}
-
-.hero-right {
-  background: var(--amber);
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 40px;
-}
-
-.hero-right--image-only {
-  background: var(--green-light);
-  padding: 40px;
   justify-content: center;
-  align-items: center;
 }
 
-.hero-right-header {
+/* ----- Hero animations ----- */
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-anim {
+  opacity: 0;
+  animation: heroFadeUp 0.8s ease-out forwards;
+}
+
+.hero-anim-1 { animation-delay: 0.3s; }
+.hero-anim-2 { animation-delay: 0.6s; }
+.hero-anim-3 { animation-delay: 0.9s; }
+
+/* ----- Scroll hint arrow ----- */
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(10px); opacity: 1; }
+}
+
+.hero-scroll-hint {
   position: absolute;
-  top: 40px;
-  left: 40px;
-  z-index: 3;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  animation: scrollBounce 2s ease-in-out infinite;
 }
 
-.hero-right-header span {
-  display: block;
-  color: var(--white);
-  font-weight: 900;
-  text-transform: uppercase;
-  font-size: 14px;
-  letter-spacing: 0.1em;
-  opacity: 0.8;
-}
-
-.hero-right-header h2 {
-  color: var(--white);
-  font-size: clamp(32px, 3vw, 48px);
-  font-weight: 900;
-  line-height: 1.05;
-}
-
-/* Popup card */
-.hero-promo-card {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  background: var(--white);
-  border-radius: 16px;
-  padding: 20px 24px;
-  max-width: 240px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-  z-index: 5;
-}
-
-.hero-promo-card h4 {
-  font-size: 15px;
-  font-weight: 800;
-  color: var(--black);
-  text-transform: none;
-  line-height: 1.3;
-  margin-bottom: 6px;
-}
-
-.hero-promo-card p {
-  font-size: 13px;
-  color: var(--gray-text);
-  line-height: 1.4;
-}
-
-.hero-promo-card .arrow {
-  position: absolute;
-  top: 16px;
-  right: 16px;
+.hero-scroll-hint svg {
   width: 28px;
   height: 28px;
-  background: var(--green-light);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-promo-card .arrow svg {
-  width: 14px;
-  height: 14px;
-  fill: none;
-  stroke: white;
-  stroke-width: 2;
-}
-
-.hero-food-image {
-  width: 100%;
-  max-width: 520px;
-  margin: 0 auto;
-  aspect-ratio: 4/3;
-  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.05));
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  margin-bottom: 24px;
-}
-
-.hero-food-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.hero-right-bottom {
-  z-index: 3;
 }
 
 .hero-right-bottom p {
@@ -641,16 +592,12 @@
   border-radius: 16px;
   overflow: hidden;
   margin-bottom: 14px;
-  background: linear-gradient(145deg, #fdf6ee, #f5ead6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .menu-card-image img {
-  width: 85%;
-  height: 85%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .menu-card h4 {
@@ -1153,121 +1100,53 @@
 }
 
 /* ===== 12. INSTAGRAM SECTION ===== */
-.instagram-section {
-  padding: 60px 40px;
+/* ===== GALERIE ===== */
+.gallery-section {
+  padding: 80px 0 80px;
   text-align: center;
-  border-top: 1px solid #e0e0e0;
-}
-
-.insta-profile {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin-bottom: 32px;
-  flex-wrap: wrap;
-}
-
-.insta-avatar {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--green-light), var(--green-brand));
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
 }
 
-.insta-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.gallery-section h2 {
+  font-size: clamp(32px, 3vw, 48px);
+  font-weight: 900;
+  margin-bottom: 12px;
 }
 
-.insta-info {
-  text-align: left;
-}
-
-.insta-info h4 {
-  font-size: 16px;
-  font-weight: 700;
-  text-transform: none;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.insta-info h4 .verified {
-  width: 16px;
-  height: 16px;
-  background: #3897f0;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.insta-info h4 .verified svg {
-  width: 10px;
-  height: 10px;
-  fill: white;
-}
-
-.insta-info p {
-  font-size: 14px;
+.gallery-section > p {
+  font-size: 18px;
   color: var(--gray-text);
+  margin-bottom: 40px;
 }
 
-.insta-follow-btn {
-  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-  color: white;
-  padding: 10px 24px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  transition: opacity 0.2s;
+.gallery-swiper-wrapper {
+  width: 100%;
 }
 
-.insta-follow-btn:hover {
-  opacity: 0.9;
+.gallery-swiper-wrapper .swiper {
+  padding: 0 20px;
 }
 
-.insta-follow-btn svg {
-  width: 18px;
-  height: 18px;
-  fill: white;
+.gallery-swiper-wrapper .swiper-wrapper {
+  transition-timing-function: linear !important;
 }
 
-.insta-posts {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 8px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.insta-post {
-  aspect-ratio: 1;
-  border-radius: 8px;
+.gallery-slide {
+  aspect-ratio: 3/4;
+  border-radius: 4px;
   overflow: hidden;
-  background: #f0f0f0;
   cursor: pointer;
-  transition: opacity 0.2s;
 }
 
-.insta-post:hover {
-  opacity: 0.85;
-}
-
-.insta-post img {
+.gallery-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.gallery-slide:hover img {
+  transform: scale(1.05);
 }
 
 /* ===== 13. FOOTER ===== */
@@ -1380,17 +1259,8 @@
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
-  .hero {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-left {
-    padding: 40px 32px;
-  }
-
-  .hero-right {
-    padding: 40px 32px;
-    min-height: 500px;
+  .hero-video-hero {
+    height: 70vh;
   }
 
   .hero-promo-card {
@@ -1431,9 +1301,6 @@
     gap: 32px;
   }
 
-  .insta-posts {
-    grid-template-columns: repeat(3, 1fr);
-  }
 }
 
 @media (max-width: 768px) {
@@ -1463,12 +1330,8 @@
     height: 45px;
   }
 
-  .hero-left {
-    padding: 32px 20px;
-  }
-
-  .hero-right {
-    padding: 32px 20px;
+  .hero-video-hero {
+    height: 60vh;
   }
 
   .delivery {
@@ -1523,14 +1386,6 @@
     padding: 32px 20px;
   }
 
-  .instagram-section {
-    padding: 40px 20px;
-  }
-
-  .insta-posts {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4px;
-  }
 
   .footer {
     padding: 40px 20px 32px;
@@ -1567,7 +1422,4 @@
     gap: 12px;
   }
 
-  .insta-posts {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }

@@ -7,7 +7,6 @@ import MenuPage from './pages/MenuPage.jsx'
 import LocationsPage from './pages/LocationsPage.jsx'
 import AboutPage from './pages/AboutPage.jsx'
 import FranchisePage from './pages/FranchisePage.jsx'
-import BlogPage from './pages/BlogPage.jsx'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import './App.css'
@@ -40,7 +39,6 @@ createRoot(document.getElementById('root')).render(
         <Route path="/restaurants" element={<Layout><LocationsPage /></Layout>} />
         <Route path="/notre-histoire" element={<Layout><AboutPage /></Layout>} />
         <Route path="/franchise" element={<Layout><FranchisePage /></Layout>} />
-        <Route path="/blog" element={<Layout><BlogPage /></Layout>} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

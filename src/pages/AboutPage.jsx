@@ -120,7 +120,7 @@ export default function AboutPage() {
           </div>
           <div className="about-hero-image">
             <img
-              src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=700&h=500&fit=crop"
+              src="/restau-1.jpg"
               alt="Restaurant SmashSmash"
               loading="lazy"
             />
