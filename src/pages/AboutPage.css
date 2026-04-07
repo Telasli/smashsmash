@@ -1,254 +1,255 @@
 /* ================================================================
-   ABOUT / NOTRE HISTOIRE PAGE
+   ABOUT / NOTRE HISTOIRE - STYLE EDITORIAL
    ================================================================ */
 
-/* ===== HERO (full photo) ===== */
-.about-hero {
-  position: relative;
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.about-hero-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-}
-
-.about-hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 1, 6, 0.7);
-  z-index: 1;
-}
-
-.about-hero-content {
-  position: relative;
-  z-index: 2;
+/* ===== HERO MINIMAL ===== */
+.about-hero-minimal {
+  background: var(--black);
+  padding: 140px 40px 120px;
   text-align: center;
-  padding: 60px 24px;
-  max-width: 750px;
 }
 
-.about-hero-tag {
+.about-hero-label {
   display: inline-block;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 6px 20px;
-  border-radius: 50px;
+  letter-spacing: 0.2em;
+  color: var(--green-brand);
+  margin-bottom: 32px;
 }
 
-.about-hero-content h1 {
-  font-size: clamp(36px, 5vw, 68px);
+.about-hero-minimal h1 {
+  font-size: clamp(38px, 5.5vw, 80px);
   font-weight: 900;
   color: var(--white);
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
   line-height: 1.05;
-  margin-bottom: 24px;
-  text-shadow: 0 4px 20px rgba(0,0,0,0.4);
-}
-
-.about-hero-lead {
-  font-size: 18px;
-  line-height: 30px;
-  color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 36px;
-}
-
-.about-hero-buttons {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-/* ===== STATS ===== */
-.about-stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  background: var(--black);
-}
-
-.about-stat {
-  padding: 48px 24px;
-  text-align: center;
-  border-right: 1px solid rgba(255,255,255,0.1);
-}
-
-.about-stat:last-child {
-  border-right: none;
-}
-
-.about-stat-number {
-  display: block;
-  font-family: 'Cooper Hewitt', 'Jost', sans-serif;
-  font-size: clamp(36px, 4vw, 56px);
-  font-weight: 900;
-  color: var(--green-brand);
-  line-height: 1;
-  margin-bottom: 8px;
-}
-
-.about-stat-label {
-  font-size: 14px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.6);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-/* ===== MISSION ===== */
-.about-mission {
-  padding: 100px 40px;
-  background: var(--white);
-}
-
-.about-mission-inner {
-  max-width: 800px;
+  letter-spacing: -0.03em;
+  max-width: 900px;
   margin: 0 auto;
+}
+
+.about-hero-minimal h1 span {
+  color: var(--green-brand);
+}
+
+/* ===== NOTRE ADN ===== */
+.about-adn {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 80px 40px;
+  gap: 40px;
+}
+
+.adn-card {
   text-align: center;
 }
 
-.about-mission h2 {
-  font-size: clamp(28px, 3vw, 44px);
-  font-weight: 900;
-  color: var(--black);
-  text-transform: uppercase;
+.adn-card-image {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
   margin-bottom: 28px;
 }
 
-.about-mission p {
-  font-size: 20px;
-  line-height: 34px;
-  color: var(--gray-text);
+.adn-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
 }
 
-/* ===== TIMELINE ===== */
-.about-timeline {
-  padding: 100px 40px;
-  background: var(--gray-light-bg);
+.adn-card:hover .adn-card-image img {
+  transform: scale(1.04);
 }
 
-.about-timeline h2 {
-  text-align: center;
-  font-size: clamp(28px, 3vw, 44px);
-  font-weight: 900;
-  color: var(--black);
-  text-transform: uppercase;
-  margin-bottom: 60px;
-}
-
-.timeline-container {
-  max-width: 900px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.timeline-line {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: var(--green-brand);
-  transform: translateX(-50%);
-}
-
-.timeline-item {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 48px;
-  position: relative;
-}
-
-.timeline-item--left {
-  flex-direction: row;
-  padding-right: calc(50% + 40px);
-  text-align: right;
-}
-
-.timeline-item--right {
-  flex-direction: row-reverse;
-  padding-left: calc(50% + 40px);
-  text-align: left;
-}
-
-.timeline-dot {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: var(--green-brand);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  box-shadow: 0 4px 16px rgba(80, 175, 70, 0.3);
-}
-
-.timeline-dot span {
-  font-size: 15px;
-  font-weight: 900;
-  color: var(--white);
-}
-
-.timeline-card {
-  background: var(--white);
-  border-radius: 12px;
-  padding: 28px 32px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-  flex: 1;
-}
-
-.timeline-card h3 {
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--black);
-  text-transform: none;
-  margin-bottom: 8px;
-  line-height: 1.3;
-}
-
-.timeline-card p {
-  font-size: 15px;
-  line-height: 24px;
-  color: var(--gray-text);
-}
-
-/* ===== GALERIE ===== */
-.about-gallery {
-  padding: 80px 0;
-  background: var(--white);
-  overflow: hidden;
-  text-align: center;
-}
-
-.about-gallery h2 {
-  font-size: clamp(28px, 3vw, 44px);
+.adn-card-content h3 {
+  font-size: 24px;
   font-weight: 900;
   color: var(--black);
   text-transform: uppercase;
   margin-bottom: 12px;
 }
 
-.about-gallery-desc {
-  font-size: 18px;
+.adn-card-content p {
+  font-size: 15px;
+  line-height: 26px;
   color: var(--gray-text);
-  margin-bottom: 40px;
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+/* ===== CHIFFRES BANDEAU ===== */
+.about-numbers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  padding: 56px 40px;
+  background: var(--green-brand);
+}
+
+.about-number {
+  text-align: center;
+}
+
+.about-number strong {
+  display: block;
+  font-family: 'Cooper Hewitt', 'Jost', sans-serif;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.about-number span {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.about-number-sep {
+  width: 1px;
+  height: 48px;
+  background: rgba(255,255,255,0.25);
+}
+
+/* ===== STORYTELLING ZIGZAG ===== */
+.about-story {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 100px 40px;
+}
+
+.story-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+.story-block:last-child {
+  margin-bottom: 0;
+}
+
+.story-block--reverse {
+  direction: rtl;
+}
+
+.story-block--reverse > * {
+  direction: ltr;
+}
+
+.story-block-image {
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+}
+
+.story-block-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.story-block-year {
+  display: inline-block;
+  font-family: 'Cooper Hewitt', 'Jost', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--green-brand);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+  padding: 4px 14px;
+  border: 2px solid var(--green-brand);
+  border-radius: 50px;
+}
+
+.story-block-content h2 {
+  font-size: clamp(24px, 2.5vw, 36px);
+  font-weight: 900;
+  color: var(--black);
+  text-transform: none;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+
+.story-block-content p {
+  font-size: 17px;
+  line-height: 30px;
+  color: var(--gray-text);
+}
+
+/* ===== NOS VALEURS ===== */
+.about-values {
+  padding: 100px 40px;
+  background: var(--black);
+}
+
+.about-values h2 {
+  text-align: center;
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 900;
+  color: var(--white);
+  text-transform: uppercase;
+  margin-bottom: 60px;
+}
+
+.values-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.value-card {
+  padding: 36px 28px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  transition: border-color 0.3s;
+}
+
+.value-card:hover {
+  border-color: var(--green-brand);
+}
+
+.value-number {
+  display: block;
+  font-family: 'Cooper Hewitt', 'Jost', sans-serif;
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--green-brand);
+  line-height: 1;
+  margin-bottom: 16px;
+  opacity: 0.4;
+}
+
+.value-card h4 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--white);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.value-card p {
+  font-size: 14px;
+  line-height: 24px;
+  color: rgba(255,255,255,0.55);
+}
+
+/* ===== GALERIE ===== */
+.about-gallery {
+  overflow: hidden;
 }
 
 .about-gallery-swiper .swiper-wrapper {
@@ -256,8 +257,7 @@
 }
 
 .about-gallery-slide {
-  aspect-ratio: 4/3;
-  border-radius: 8px;
+  aspect-ratio: 3/2;
   overflow: hidden;
 }
 
@@ -265,80 +265,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s;
-}
-
-.about-gallery-slide:hover img {
-  transform: scale(1.05);
-}
-
-/* ===== ENGAGEMENTS ===== */
-.about-commitments {
-  padding: 100px 40px;
-  background: var(--gray-light-bg);
-}
-
-.about-commitments-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.about-commitments h2 {
-  font-size: clamp(28px, 3vw, 44px);
-  font-weight: 900;
-  color: var(--black);
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
-
-.about-commitments-intro {
-  font-size: 18px;
-  color: var(--gray-text);
-  line-height: 28px;
-  max-width: 600px;
-  margin: 0 auto 60px;
-}
-
-.commitments-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-}
-
-.commitment-card {
-  text-align: center;
-  padding: 40px 24px;
-  border-radius: 16px;
-  border: none;
-  background: var(--white);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-}
-
-.commitment-icon {
-  width: 52px;
-  height: 52px;
-  margin: 0 auto 20px;
-  color: var(--green-brand);
-}
-
-.commitment-icon svg {
-  width: 100%;
-  height: 100%;
-}
-
-.commitment-card h4 {
-  font-size: 18px;
-  font-weight: 800;
-  color: var(--black);
-  text-transform: none;
-  margin-bottom: 12px;
-}
-
-.commitment-card p {
-  font-size: 14px;
-  line-height: 22px;
-  color: var(--gray-text);
 }
 
 /* ===== CTA ===== */
@@ -353,7 +279,7 @@
   font-weight: 900;
   color: var(--white);
   text-transform: uppercase;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .about-cta p {
@@ -362,102 +288,64 @@
   margin-bottom: 32px;
 }
 
-.about-cta-buttons {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
 /* ===== RESPONSIVE ===== */
-@media (max-width: 1200px) {
-  .commitments-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 @media (max-width: 1024px) {
-  .about-stats {
+  .about-adn {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    gap: 48px;
+  }
+
+  .story-block {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .story-block--reverse {
+    direction: ltr;
+  }
+
+  .values-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .about-stat {
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+  .about-numbers {
+    flex-wrap: wrap;
+    gap: 32px;
   }
 
-  .timeline-line {
-    left: 32px;
-  }
-
-  .timeline-item--left,
-  .timeline-item--right {
-    flex-direction: row-reverse;
-    padding-left: 80px;
-    padding-right: 0;
-    text-align: left;
-  }
-
-  .timeline-dot {
-    left: 32px;
-    width: 52px;
-    height: 52px;
-  }
-
-  .timeline-dot span {
-    font-size: 14px;
+  .about-number-sep {
+    display: none;
   }
 }
 
 @media (max-width: 768px) {
-  .about-hero {
-    min-height: 70vh;
+  .about-hero-minimal {
+    padding: 100px 24px 80px;
   }
 
-  .about-stats {
-    grid-template-columns: repeat(2, 1fr);
+  .about-adn {
+    padding: 60px 24px;
   }
 
-  .about-mission {
-    padding: 60px 20px;
+  .about-story {
+    padding: 60px 24px;
   }
 
-  .about-mission p {
-    font-size: 17px;
-    line-height: 30px;
+  .story-block {
+    margin-bottom: 48px;
   }
 
-  .about-timeline {
-    padding: 60px 20px;
+  .about-values {
+    padding: 60px 24px;
   }
 
-  .about-commitments {
-    padding: 60px 20px;
-  }
-
-  .commitments-grid {
+  .values-grid {
     grid-template-columns: 1fr;
     gap: 16px;
   }
 
   .about-cta {
-    padding: 60px 20px;
-  }
-
-  .timeline-item {
-    margin-bottom: 32px;
-  }
-
-  .timeline-card {
-    padding: 20px 24px;
-  }
-}
-
-@media (max-width: 480px) {
-  .about-stats {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .about-stat {
-    padding: 32px 16px;
+    padding: 60px 24px;
   }
 }
