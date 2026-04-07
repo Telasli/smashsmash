@@ -1,162 +1,191 @@
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay } from 'swiper/modules'
-import 'swiper/css'
 import './AboutPage.css'
 
 /* ================================================================
-   PAGE NOTRE HISTOIRE - STYLE EDITORIAL
+   PAGE NOTRE HISTOIRE
    ================================================================ */
 
-const adnItems = [
+const timeline = [
   {
-    image: '/menu/smash-burger.jpeg',
-    title: 'Le Smash',
-    text: "Notre technique signature : chaque steak est presse a la plancha pour obtenir cette croute caramelisee unique. Croustillant a l\u2019exterieur, juteux a l\u2019interieur.",
-  },
-  {
-    image: '/menu/frites-cheddar-bacon.jpg',
-    title: 'Les Ingredients',
-    text: "Boeuf Irish Steak, cheddar affine, buns toastes, sauces maison. Chaque ingredient est selectionne pour sa qualite et son gout authentique.",
-  },
-  {
-    image: '/restau-9.jpg',
-    title: "L\u2019Experience",
-    text: "Un cadre moderne et chaleureux, un service rapide, une ambiance conviviale. SmashSmash, c\u2019est plus qu\u2019un burger, c\u2019est un moment.",
-  },
-]
-
-const story = [
-  {
-    image: '/restau-bordeaux-1.jpg',
     year: '2019',
-    title: "Tout commence avec une obsession",
-    text: "Deux amis, un voyage a Los Angeles, et une revelation : le smash burger. De retour en France, une seule idee en tete : faire le meilleur burger possible avec les meilleurs ingredients locaux.",
+    title: "L'idee est nee",
+    description: "Deux amis passionnes de street food decouvrent le smash burger lors d'un voyage a Los Angeles et decident de ramener le concept en France.",
   },
   {
-    image: '/restau-5.jpg',
     year: '2020',
-    title: "Le premier SmashSmash ouvre a Bordeaux",
-    text: "277 Rue Sainte-Catherine. Des la premiere semaine, c\u2019est la queue devant la porte. Le bouche-a-oreille fait le reste. Le concept est valide.",
+    title: 'Premier restaurant',
+    description: "Ouverture du tout premier SmashSmash dans le Marais a Paris. Le succes est immediat : files d'attente des la premiere semaine.",
   },
   {
-    image: '/restau-8.jpg',
-    year: '2023-2024',
-    title: "L\u2019expansion commence",
-    text: "Saint-Germain-en-Laye, Calais, bientot la Belgique et Dubai. Chaque nouveau restaurant garde l\u2019ADN SmashSmash : produits frais, cuisson parfaite, experience unique.",
+    year: '2022',
+    title: 'Expansion nationale',
+    description: "Forte de son succes parisien, la marque s'installe a Lyon, Marseille et Bordeaux. 8 restaurants ouverts en un an.",
+  },
+  {
+    year: '2024',
+    title: '15 restaurants',
+    description: 'SmashSmash est desormais present dans les grandes villes francaises avec plus de 500 000 burgers vendus.',
+  },
+  {
+    year: '2025',
+    title: "Et ce n'est que le debut",
+    description: 'De nouveaux restaurants en preparation, des collaborations avec des chefs etoiles et des recettes toujours plus creatives.',
   },
 ]
 
-const values = [
-  { title: 'Local', text: "Viande francaise, legumes de producteurs locaux, partenariats de proximite." },
-  { title: 'Qualite', text: "Aucun compromis sur les ingredients. Tout est frais, rien n\u2019est surgele." },
-  { title: 'Responsable', text: "Emballages recyclables, zero gaspillage, respect de l\u2019environnement." },
-  { title: 'Humain', text: "Des equipes formees, valorisees, et passionnees par ce qu\u2019elles font." },
+const team = [
+  {
+    initials: 'TD',
+    name: 'Thomas Durand',
+    role: 'Co-fondateur & CEO',
+    description: "Ancien chef de cuisine, passionne par la street food et l'entrepreneuriat.",
+  },
+  {
+    initials: 'ML',
+    name: 'Marie Lefevre',
+    role: 'Co-fondatrice & Directrice Creative',
+    description: "Designer culinaire, elle imagine chaque nouvelle recette et l'identite visuelle de la marque.",
+  },
+  {
+    initials: 'AM',
+    name: 'Antoine Mercier',
+    role: 'Head Chef',
+    description: 'Forme dans les plus grands restaurants parisiens, il supervise la qualite dans tous nos restaurants.',
+  },
 ]
 
-const galleryPhotos = [
-  '/restau-1.jpg', '/restau-bordeaux-1.jpg', '/restau-5.jpg',
-  '/restau-9.jpg', '/restau-8.jpg', '/restau-bordeaux-2.jpg',
-  '/restau-2.jpg', '/restau-10.jpg', '/restau-4.jpg',
+const commitments = [
+  {
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M24 4C14 4 6 12 6 22c0 12 18 22 18 22s18-10 18-22C42 12 34 4 24 4z" />
+        <circle cx="24" cy="20" r="6" />
+      </svg>
+    ),
+    title: 'Approvisionnement local',
+    description: "Notre viande provient exclusivement d'elevages francais partenaires, nos legumes de producteurs locaux.",
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M6 40l8-16 8 10 8-20 12 26" />
+        <path d="M6 40h36" />
+        <circle cx="24" cy="10" r="4" />
+        <path d="M24 14v6" />
+      </svg>
+    ),
+    title: 'Zero gaspillage',
+    description: "Nous avons reduit nos dechets de 60% grace a un systeme de gestion des stocks intelligent et des partenariats avec des associations.",
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M12 44V20l12-16 12 16v24H12z" />
+        <path d="M20 44V32h8v12" />
+        <circle cx="24" cy="24" r="3" />
+      </svg>
+    ),
+    title: 'Emballages responsables',
+    description: "Tous nos emballages sont compostables ou recyclables. Nous visons le 100% sans plastique d'ici fin 2026.",
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <circle cx="24" cy="14" r="8" />
+        <path d="M8 44c0-8 7-16 16-16s16 8 16 16" />
+      </svg>
+    ),
+    title: 'Bien-etre au travail',
+    description: "Salaires au-dessus du marche, formation continue et perspectives d'evolution pour chaque membre de notre equipe.",
+  },
 ]
 
 export default function AboutPage() {
   return (
     <div className="about-page">
-      {/* ===== HERO MINIMAL ===== */}
-      <section className="about-hero-minimal">
-        <span className="about-hero-label">Notre Histoire</span>
-        <h1>On ne fait pas des burgers.<br /><span>On fait des SmashSmash.</span></h1>
-      </section>
-
-      {/* ===== NOTRE ADN ===== */}
-      <section className="about-adn">
-        {adnItems.map((item, i) => (
-          <div className="adn-card" key={i}>
-            <div className="adn-card-image">
-              <img src={item.image} alt={item.title} loading="lazy" />
-            </div>
-            <div className="adn-card-content">
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
+      {/* ===== HERO ===== */}
+      <section className="about-hero pattern-lines">
+        <div className="about-hero-inner">
+          <div className="about-hero-content">
+            <span className="about-hero-tag">Notre Histoire</span>
+            <h1>Ne de la passion du Smash Burger</h1>
+            <p className="about-hero-lead">
+              Depuis 2019, SmashSmash ecrit une nouvelle page de la street food en France.
+              Des ingredients sourcés localement, une cuisson signature et un engagement
+              sans compromis pour le gout.
+            </p>
+            <div className="about-hero-buttons">
+              <a href="/menu" className="btn-pill btn-white">Voir le Menu</a>
+              <a href="/restaurants" className="btn-pill btn-outline-white">Nos Restaurants</a>
             </div>
           </div>
-        ))}
-      </section>
-
-      {/* ===== CHIFFRES (bandeau) ===== */}
-      <section className="about-numbers">
-        <div className="about-number"><strong>2019</strong><span>Creation</span></div>
-        <div className="about-number-sep" />
-        <div className="about-number"><strong>5+</strong><span>Restaurants</span></div>
-        <div className="about-number-sep" />
-        <div className="about-number"><strong>3</strong><span>Pays</span></div>
-        <div className="about-number-sep" />
-        <div className="about-number"><strong>500K+</strong><span>Burgers vendus</span></div>
-      </section>
-
-      {/* ===== STORYTELLING ZIGZAG ===== */}
-      <section className="about-story">
-        {story.map((item, i) => (
-          <div className={`story-block ${i % 2 !== 0 ? 'story-block--reverse' : ''}`} key={i}>
-            <div className="story-block-image">
-              <img src={item.image} alt={item.title} loading="lazy" />
-            </div>
-            <div className="story-block-content">
-              <span className="story-block-year">{item.year}</span>
-              <h2>{item.title}</h2>
-              <p>{item.text}</p>
-            </div>
+          <div className="about-hero-image">
+            <img
+              src="/restau-1.jpg"
+              alt="Restaurant SmashSmash"
+              loading="lazy"
+            />
           </div>
-        ))}
+        </div>
       </section>
 
-      {/* ===== NOS VALEURS ===== */}
-      <section className="about-values">
-        <h2>Nos Valeurs</h2>
-        <div className="values-grid">
-          {values.map((v, i) => (
-            <div className="value-card" key={i}>
-              <span className="value-number">0{i + 1}</span>
-              <h4>{v.title}</h4>
-              <p>{v.text}</p>
+      {/* ===== TIMELINE ===== */}
+      <section className="about-timeline">
+        <h2>Notre Histoire</h2>
+        <div className="timeline-container">
+          <div className="timeline-line" />
+          {timeline.map((item, i) => (
+            <div className={`timeline-item ${i % 2 === 0 ? 'timeline-item--left' : 'timeline-item--right'}`} key={i}>
+              <div className="timeline-dot">
+                <span>{item.year}</span>
+              </div>
+              <div className="timeline-card">
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ===== GALERIE ===== */}
-      <section className="about-gallery">
-        <div className="about-gallery-swiper">
-          <Swiper
-            modules={[Autoplay]}
-            spaceBetween={0}
-            slidesPerView={4}
-            loop={true}
-            speed={6000}
-            autoplay={{ delay: 0, disableOnInteraction: false }}
-            breakpoints={{
-              0: { slidesPerView: 1.5 },
-              480: { slidesPerView: 2 },
-              768: { slidesPerView: 3 },
-              1024: { slidesPerView: 4 },
-            }}
-          >
-            {galleryPhotos.map((src, i) => (
-              <SwiperSlide key={i}>
-                <div className="about-gallery-slide">
-                  <img src={src} alt={`Restaurant ${i + 1}`} loading="lazy" />
+      {/* ===== EQUIPE ===== */}
+      <section className="about-team">
+        <div className="about-team-inner">
+          <h2>L&rsquo;equipe</h2>
+          <p className="about-team-intro">
+            Des passionnes qui travaillent chaque jour pour vous offrir la meilleure experience burger.
+          </p>
+          <div className="team-grid">
+            {team.map((member, i) => (
+              <div className="team-card" key={i}>
+                <div className="team-avatar">
+                  <span>{member.initials}</span>
                 </div>
-              </SwiperSlide>
+                <h4>{member.name}</h4>
+                <span className="team-role">{member.role}</span>
+                <p>{member.description}</p>
+              </div>
             ))}
-          </Swiper>
+          </div>
         </div>
       </section>
 
-      {/* ===== CTA ===== */}
-      <section className="about-cta">
-        <h2>Envie de rejoindre l&rsquo;aventure ?</h2>
-        <p>Ouvrez votre propre SmashSmash.</p>
-        <a href="/franchise" className="btn-pill btn-white">Devenir Franchise</a>
+      {/* ===== ENGAGEMENTS ===== */}
+      <section className="about-commitments">
+        <div className="about-commitments-inner">
+          <h2>Nos Engagements</h2>
+          <p className="about-commitments-intro">
+            Nous croyons qu&rsquo;une entreprise de restauration peut etre responsable et delicieuse a la fois.
+          </p>
+          <div className="commitments-grid">
+            {commitments.map((item, i) => (
+              <div className="commitment-card" key={i}>
+                <div className="commitment-icon">{item.icon}</div>
+                <h4>{item.title}</h4>
+                <p>{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
     </div>
   )
