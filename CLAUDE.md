@@ -2,39 +2,49 @@
 
 ## Presentation du projet
 
-Site vitrine pour **SmashSmash**, marque de smash burgers nee en France. Application React/Vite single-page avec routing cote client. Initialement inspire de Shake Shack UK, desormais entierement personnalise avec branding, contenu et restaurants propres a SmashSmash.
+Site vitrine pour **SmashSmash**, marque de smash burgers nee en France. Application React/Vite single-page avec routing cote client. Branding, contenu et restaurants propres a SmashSmash.
 
 ## Stack technique
 
 - **Framework** : React 19 + Vite 7
 - **Routing** : React Router DOM v7 (`BrowserRouter`, `NavLink` pour liens actifs)
-- **Carousel** : Swiper.js (module Navigation)
-- **Fonts** : Google Fonts - Jost (400, 500, 700, 800, 900)
+- **Carousel** : Swiper.js (modules Navigation + Autoplay)
+- **Fonts** : Cooper Hewitt (titres via fontsource CDN) + DM Sans (body via Google Fonts) + Jost (fallback)
 - **CSS** : CSS pur (pas de framework), un fichier CSS par page + App.css pour les styles globaux/partages
 - **Langue** : Francais (html lang="fr")
+
+## Charte graphique
+
+- **Couleurs** : `#000106` (noir), `#50AF46` (vert brand), `#FFFFFF` (blanc)
+- **Typographies** : Cooper Hewitt (titres, boutons) + DM Sans (body, inputs)
+- **Logo** : `logo_smash.png` dans `/public`
 
 ## Architecture des fichiers
 
 ```
 shakeshack-uk/
-├── index.html                    # Point d'entree, Google Fonts, lang="fr", favicon logo_smash.png
+├── index.html                    # Point d'entree, fonts CDN, lang="fr", favicon logo_smash.png
 ├── public/
-│   ├── logo_smash.png            # Logo SmashSmash (utilise navbar + footer + favicon)
-│   └── faviconV2.png             # Favicon alternatif (non utilise)
+│   ├── logo_smash.png            # Logo SmashSmash (navbar + footer + favicon)
+│   ├── video-presentation.mp4    # Video hero page d'accueil
+│   ├── gallery/                  # 30 photos shooting street (street-01.jpeg a street-30.jpeg)
+│   ├── menu/                     # Photos produits menu (burgers, frites, hotdogs, boissons, shakes, etc.)
+│   ├── restau-*.jpg              # Photos restaurants (restau-1.jpg a restau-10.jpg, restau-bordeaux-*.jpg)
+│   └── smash-*.jpg               # Photos food lifestyle (Smash Smash HD)
 ├── src/
 │   ├── main.jsx                  # Routing + Layout (Navbar + Footer wrappent chaque page)
-│   ├── App.jsx                   # Page d'accueil (hero, menu carousel, livraison CTA, blog, locations, breakfast, newsletter, sustainability, livraison CTA 2, instagram)
+│   ├── App.jsx                   # Page d'accueil
 │   ├── App.css                   # Styles globaux + variables CSS + styles accueil + patterns
-│   ├── index.css                 # Reset CSS + styles de base (body, headings)
+│   ├── index.css                 # Reset CSS + styles de base (body, headings, fonts)
 │   ├── components/
-│   │   ├── Navbar.jsx            # Navigation partagee (logo PNG, NavLink avec etat actif, bouton Commander)
-│   │   └── Footer.jsx            # Footer partage (liens React Router, reseaux sociaux, pattern leger)
+│   │   ├── Navbar.jsx            # Navigation partagee (logo PNG, NavLink avec etat actif, bouton Commander, menu mobile)
+│   │   └── Footer.jsx            # Footer partage (liens, reseaux sociaux Instagram/TikTok/Facebook)
 │   └── pages/
-│       ├── MenuPage.jsx          # Page menu avec categories sticky, scroll-spy, grille produits
+│       ├── MenuPage.jsx          # Page menu avec 11 categories, scroll-spy, grille produits
 │       ├── MenuPage.css
-│       ├── LocationsPage.jsx     # Page restaurants simplifiee (hero + recherche + grille)
+│       ├── LocationsPage.jsx     # Page restaurants (hero photo, cards sans images, geolocalisation, galerie)
 │       ├── LocationsPage.css
-│       ├── BlogPage.jsx          # Page blog avec grille d'articles
+│       ├── BlogPage.jsx          # Page blog (non utilisee, route supprimee)
 │       ├── BlogPage.css
 │       ├── AboutPage.jsx         # Page "Notre Histoire" avec hero vert, timeline, equipe, engagements
 │       ├── AboutPage.css
@@ -44,92 +54,106 @@ shakeshack-uk/
 
 ## Routes
 
-| Route              | Composant        | Description                                |
-|--------------------|------------------|--------------------------------------------|
-| `/`                | `App`            | Page d'accueil                             |
-| `/menu`            | `MenuPage`       | Menu complet avec 7 categories             |
-| `/restaurants`     | `LocationsPage`  | Recherche + grille de 7 restaurants        |
-| `/blog`            | `BlogPage`       | Blog avec 8 articles en grille             |
-| `/notre-histoire`  | `AboutPage`      | A propos, timeline, equipe, engagements    |
-| `/franchise`       | `FranchisePage`  | Devenir franchise + formulaire             |
+| Route              | Composant        | Description                                     |
+|--------------------|------------------|-------------------------------------------------|
+| `/`                | `App`            | Page d'accueil                                  |
+| `/menu`            | `MenuPage`       | Menu complet avec 11 categories                 |
+| `/restaurants`     | `LocationsPage`  | Recherche + geolocalisation + 6 restaurants     |
+| `/notre-histoire`  | `AboutPage`      | A propos, timeline, equipe, engagements         |
+| `/franchise`       | `FranchisePage`  | Devenir franchise + formulaire                  |
 
 ## Navigation (Navbar)
 
-Liens dans l'ordre : **Menu** | **Nos Restaurants** | **Blog** | **Notre Histoire** | **Devenir Franchise** | **Commander** (bouton vert)
+Liens dans l'ordre : **Accueil** | **Menu** | **Nos Restaurants** | **Notre Histoire** | **Devenir Franchise** | **Commander** (bouton vert)
 
-- `NavLink` de React Router avec classe `.active` (couleur verte + bordure) pour indiquer la page courante
-- Pas de bandeau d'annonce (supprime)
-- Pas de fleches dropdown sur les liens
-- Bouton "Commander" : fond vert, texte blanc (`!important`), redirige vers `/restaurants`
+- `NavLink` de React Router avec classe `.active` (couleur verte + bordure)
+- Bouton "Commander" : fond vert `#50AF46`, texte blanc, redirige vers `/restaurants`
 - Navbar sticky avec bordure verte en bas (4px)
 - Logo PNG `logo_smash.png` (hauteur 65px)
+- Menu mobile fullscreen fond vert avec hamburger anime
 
 ## Restaurants
 
-7 restaurants reels :
-- **Ouverts** : Bordeaux, Saint Germain en Laye 78, Quimper, Anderlecht (Belgique)
-- **Bientot** : Calais, Genappe (Belgique), Voiron
+6 restaurants :
+- **Ouverts** : Bordeaux (277 Rue Sainte-Catherine), Saint Germain en Laye 78 (90 Av. du Marechal Foch), Calais (2 Rue Royale)
+- **Bientot** : Genappe (Belgique), Voiron, Dubai
 
-Chaque carte affiche un badge vert "Ouvert" ou orange "Bientot". Les restaurants "bientot" affichent "Ouverture prochaine" au lieu du bouton Commander.
+Fonctionnalites :
+- Cards sans images avec pastille statut (vert ouvert / orange bientot)
+- Boutons : "Commander en ligne" (actif pour Saint Germain via restabo.app) + "Plus d'info" (lien Google Maps)
+- Geolocalisation : bouton "Utiliser ma position" pour trier par distance
+- Hero avec photo restaurant en fond + overlay
+- Galerie carrousel des photos restaurants en bas
+
+## Menu (MenuPage.jsx)
+
+11 categories avec scroll-spy (IntersectionObserver) :
+- **Nos Box** : 2 for U, 4 for U, Big Box, Kid Box
+- **Burgers** : Smash, Cheese, Chili, Fungi, Big Smash, Avocado Cheese, Smoke Smash
+- **Poulet** : Hot Chick'n, Avocado Chick'n, Chick'n Smash, BBQ Smash
+- **Hot Dog** : Classic, New York Style, Spicy Bird, Bacon Cheese
+- **Nos Frites** : Nature/Epice, Cheddar, Cheddar Piment, Cheddar & Bacon
+- **Salade** : Crousti
+- **Petites Faims** : Nuggets, Mozza Sticks, Tenders
+- **Boissons** : Lemonaid, Lemonaid Orange Sanguine, Coca, Coca Zero, Fuze Tea, Oasis, St Pellegrino, The Glace, Eau
+- **Shakes Smash** : Fraise, Vanille, Chocolat
+- **Smice** : Smice, Smice Croquant
+- **Veggies** : Veggie Smash, Veggie Chick'n Smash, Veggie Beef Smash, Nuggets Veggie
+
+Toutes les photos produits sont dans `/public/menu/`. Separateur vert degrade entre categories. Cards non cliquables.
 
 ## Variables CSS (App.css :root)
 
 ```css
---green-brand: #1F5C30
---green-light: #4A8C2A
---green-button: #3D7B42
+--green-brand: #50AF46
+--green-light: #50AF46
+--green-button: #50AF46
 --amber: #E8960C
---black: #1a1a1a
---gray-text: #707070
---gray-light-bg: #f0f0f0
+--black: #000106
+--gray-text: #555
+--gray-light-bg: #f4f4f4
 --white: #ffffff
+--font-heading: 'Cooper Hewitt', 'Jost', sans-serif
+--font-body: 'DM Sans', 'Jost', sans-serif
 ```
+
+## Page d'accueil (App.jsx)
+
+Sections dans l'ordre :
+1. **Hero** : video de presentation full-width (92vh) avec overlay noir 0.7, titre anime (fade-up), fleche scroll
+2. **Notre Menu** : carousel Swiper des produits phares
+3. **Livraison CTA** : bandeau avec bouton Commander
+4. **Blog section** : image restaurant + CTA
+5. **Meilleurs burgers** : texte descriptif
+6. **Tous nos restaurants** : grille 4 premiers restaurants
+7. **Petit-dejeuner** : image + horaires
+8. **Newsletter** : formulaire d'inscription
+9. **Durabilite** : texte + image
+10. **Livraison CTA 2** : bandeau
+11. **Galerie** : carrousel auto 30 photos shooting street (defilement lineaire continu)
 
 ## Patterns decoratifs
 
-- **`.pattern-lines`** : motifs food SVG blancs (burgers, frites, milkshakes) — utilise sur fonds verts/sombres (hero, footer, sections vertes). Opacite 0.07.
-- **`.pattern-lines-dark`** : memes motifs en noir (`#1a1a1a`) — utilise sur fonds clairs (section livraison, hero page restaurants, header menu). Opacite 0.06.
-- **Footer** : surcharge `.footer.pattern-lines::before` a opacite 0.02 pour rester tres discret.
-- Les elements enfants utilisent `position: relative; z-index: 2` pour rester au-dessus du pattern.
+- **`.pattern-lines`** : motifs food SVG blancs — fonds verts/sombres. Opacite 0.07.
+- **`.pattern-lines-dark`** : memes motifs en noir — fonds clairs. Opacite 0.06.
 
 ## Composants partages
 
-- **SmashSmashLogo** : composant `<img>` charge `logo_smash.png`, exporte depuis `Navbar.jsx`, utilise dans `Footer.jsx`
+- **SmashSmashLogo** : composant `<img>` charge `logo_smash.png`, exporte depuis `Navbar.jsx`, utilise dans `Footer.jsx` (hauteur 55px)
 - **Layout** : Wrapper dans `main.jsx` qui ajoute Navbar + Footer autour de chaque page
 - **Boutons pill** : Classes `.btn-pill` + variantes (`.btn-white`, `.btn-black`, `.btn-outline-black`, `.btn-outline-white`, `.btn-green-solid`)
 
-## Pages detaillees
-
-### Accueil (`App.jsx`)
-Sections dans l'ordre : Hero (fond vert + pattern + image) → Menu carousel → Livraison CTA (texte gauche, bouton droite) → Blog → Tous les restaurants carousel → Petit-dejeuner → Newsletter → Durabilite → Livraison CTA 2 → Instagram
-
-### Menu (`MenuPage.jsx`)
-Header avec pattern + bouton Commander. 7 categories avec scroll-spy (IntersectionObserver) : Edition Limitee, Menu Burgers, Menu Poulet, Accompagnements, Menu Hot Dog, Shakes + Frozen Custard, Boissons. Titre de categorie au-dessus du banner featured.
-
-### Restaurants (`LocationsPage.jsx`)
-Page simplifiee : hero avec pattern + barre de recherche pill (fond blanc) + grille 4 colonnes de cartes restaurants.
-
-### Blog (`BlogPage.jsx`)
-Hero avec pattern + grille 4 colonnes de 8 articles. 4 categories : Recettes, Actualites, Coulisses, Evenements.
-
-### Notre Histoire (`AboutPage.jsx`)
-Hero vert brand avec pattern + boutons. Timeline (2019-2025). Equipe (3 membres). Engagements (4 cartes sur fond beige clair `#faf9f7`).
-
-### Devenir Franchise (`FranchisePage.jsx`)
-Hero vert avec pattern. Stats, avantages (6 cartes), etapes (6 etapes), temoignage, formulaire de contact complet.
-
 ## Conventions
 
-- Tout le contenu textuel est en **francais** (pas d'accents dans le code source, `&rsquo;` pour les apostrophes)
-- Images : placeholders Unsplash (pas d'images locales sauf le logo)
+- Tout le contenu textuel est en **francais**
+- Images : vraies photos SmashSmash (dossiers Smash Smash HD, Menu, PHOTO RESTAU, shooting street)
 - Icones : SVG inline (pas de librairie d'icones)
 - Un fichier CSS par page, styles globaux dans `App.css`
 - Pas de TypeScript, pas de CSS modules
 - Responsive : breakpoints a 1200px, 1024px, 768px, 480px
 - Tous les boutons "Commander" redirigent vers `/restaurants`
-- Tous les boutons "Voir le Menu" / "Decouvrir le Menu" redirigent vers `/menu`
-- Footer utilise `react-router-dom` `Link` pour la navigation interne
-- Instagram du footer pointe vers `https://www.instagram.com/smashsmashfr/`
+- Footer : liens Accueil, Menu, Nos Restaurants, Notre Histoire, Devenir Franchise, Contact
+- Reseaux sociaux : Instagram (@smashsmashfr), TikTok, Facebook
 
 ## Commandes
 
@@ -137,3 +161,8 @@ Hero vert avec pattern. Stats, avantages (6 cartes), etapes (6 etapes), temoigna
 npm run dev    # Demarre le serveur de dev sur http://localhost:5173
 npm run build  # Build de production dans /dist
 ```
+
+## Repository
+
+- **GitHub** : https://github.com/Telasli/smashsmash.git
+- **Branche** : main
