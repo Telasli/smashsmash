@@ -1,55 +1,44 @@
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay } from 'swiper/modules'
+import 'swiper/css'
 import './AboutPage.css'
 
 /* ================================================================
    PAGE NOTRE HISTOIRE
    ================================================================ */
 
+const stats = [
+  { number: '2019', label: 'Annee de creation' },
+  { number: '5+', label: 'Restaurants ouverts' },
+  { number: '3', label: 'Pays' },
+  { number: '500K+', label: 'Burgers vendus' },
+]
+
 const timeline = [
   {
     year: '2019',
-    title: "L'idee est nee",
-    description: "Deux amis passionnes de street food decouvrent le smash burger lors d'un voyage a Los Angeles et decident de ramener le concept en France.",
+    title: "L\u2019idee est nee",
+    description: "Deux amis passionnes de street food decouvrent le smash burger lors d\u2019un voyage a Los Angeles et decident de ramener le concept en France.",
   },
   {
     year: '2020',
     title: 'Premier restaurant',
-    description: "Ouverture du tout premier SmashSmash dans le Marais a Paris. Le succes est immediat : files d'attente des la premiere semaine.",
+    description: "Ouverture du tout premier SmashSmash a Bordeaux. Le succes est immediat : files d\u2019attente des la premiere semaine.",
   },
   {
-    year: '2022',
-    title: 'Expansion nationale',
-    description: "Forte de son succes parisien, la marque s'installe a Lyon, Marseille et Bordeaux. 8 restaurants ouverts en un an.",
+    year: '2023',
+    title: 'Expansion',
+    description: "La marque s\u2019installe a Saint-Germain-en-Laye et Calais. Le concept seduit partout ou il passe.",
   },
   {
     year: '2024',
-    title: '15 restaurants',
-    description: 'SmashSmash est desormais present dans les grandes villes francaises avec plus de 500 000 burgers vendus.',
+    title: 'International',
+    description: "SmashSmash franchit les frontieres : Genappe en Belgique et bientot Dubai. L\u2019aventure ne fait que commencer.",
   },
   {
     year: '2025',
-    title: "Et ce n'est que le debut",
-    description: 'De nouveaux restaurants en preparation, des collaborations avec des chefs etoiles et des recettes toujours plus creatives.',
-  },
-]
-
-const team = [
-  {
-    initials: 'TD',
-    name: 'Thomas Durand',
-    role: 'Co-fondateur & CEO',
-    description: "Ancien chef de cuisine, passionne par la street food et l'entrepreneuriat.",
-  },
-  {
-    initials: 'ML',
-    name: 'Marie Lefevre',
-    role: 'Co-fondatrice & Directrice Creative',
-    description: "Designer culinaire, elle imagine chaque nouvelle recette et l'identite visuelle de la marque.",
-  },
-  {
-    initials: 'AM',
-    name: 'Antoine Mercier',
-    role: 'Head Chef',
-    description: 'Forme dans les plus grands restaurants parisiens, il supervise la qualite dans tous nos restaurants.',
+    title: "Et ce n\u2019est que le debut",
+    description: "De nouveaux restaurants en preparation, des collaborations avec des chefs et des recettes toujours plus creatives.",
   },
 ]
 
@@ -62,7 +51,7 @@ const commitments = [
       </svg>
     ),
     title: 'Approvisionnement local',
-    description: "Notre viande provient exclusivement d'elevages francais partenaires, nos legumes de producteurs locaux.",
+    description: "Notre viande provient exclusivement d\u2019elevages francais partenaires, nos legumes de producteurs locaux.",
   },
   {
     icon: (
@@ -74,7 +63,7 @@ const commitments = [
       </svg>
     ),
     title: 'Zero gaspillage',
-    description: "Nous avons reduit nos dechets de 60% grace a un systeme de gestion des stocks intelligent et des partenariats avec des associations.",
+    description: "Nous avons reduit nos dechets de 60% grace a un systeme de gestion des stocks intelligent.",
   },
   {
     icon: (
@@ -85,7 +74,7 @@ const commitments = [
       </svg>
     ),
     title: 'Emballages responsables',
-    description: "Tous nos emballages sont compostables ou recyclables. Nous visons le 100% sans plastique d'ici fin 2026.",
+    description: "Tous nos emballages sont compostables ou recyclables. Objectif 100% sans plastique.",
   },
   {
     icon: (
@@ -95,42 +84,64 @@ const commitments = [
       </svg>
     ),
     title: 'Bien-etre au travail',
-    description: "Salaires au-dessus du marche, formation continue et perspectives d'evolution pour chaque membre de notre equipe.",
+    description: "Salaires au-dessus du marche, formation continue et perspectives d\u2019evolution pour chaque membre.",
   },
+]
+
+const galleryPhotos = [
+  '/restau-1.jpg', '/restau-bordeaux-1.jpg', '/restau-5.jpg',
+  '/restau-9.jpg', '/restau-8.jpg', '/restau-bordeaux-2.jpg',
+  '/restau-2.jpg', '/restau-10.jpg', '/restau-4.jpg',
 ]
 
 export default function AboutPage() {
   return (
     <div className="about-page">
       {/* ===== HERO ===== */}
-      <section className="about-hero pattern-lines">
-        <div className="about-hero-inner">
-          <div className="about-hero-content">
-            <span className="about-hero-tag">Notre Histoire</span>
-            <h1>Ne de la passion du Smash Burger</h1>
-            <p className="about-hero-lead">
-              Depuis 2019, SmashSmash ecrit une nouvelle page de la street food en France.
-              Des ingredients sourcés localement, une cuisson signature et un engagement
-              sans compromis pour le gout.
-            </p>
-            <div className="about-hero-buttons">
-              <a href="/menu" className="btn-pill btn-white">Voir le Menu</a>
-              <a href="/restaurants" className="btn-pill btn-outline-white">Nos Restaurants</a>
-            </div>
+      <section className="about-hero">
+        <img src="/restau-1.jpg" alt="Restaurant SmashSmash" className="about-hero-bg" />
+        <div className="about-hero-overlay" />
+        <div className="about-hero-content">
+          <span className="about-hero-tag">Notre Histoire</span>
+          <h1>Ne de la passion du Smash Burger</h1>
+          <p className="about-hero-lead">
+            Depuis 2019, SmashSmash ecrit une nouvelle page de la street food en France.
+            Des ingredients sources localement, une cuisson signature et un engagement
+            sans compromis pour le gout.
+          </p>
+          <div className="about-hero-buttons">
+            <a href="/menu" className="btn-pill btn-white">Voir le Menu</a>
+            <a href="/restaurants" className="btn-pill btn-outline-white">Nos Restaurants</a>
           </div>
-          <div className="about-hero-image">
-            <img
-              src="/restau-1.jpg"
-              alt="Restaurant SmashSmash"
-              loading="lazy"
-            />
+        </div>
+      </section>
+
+      {/* ===== CHIFFRES CLES ===== */}
+      <section className="about-stats">
+        {stats.map((s, i) => (
+          <div className="about-stat" key={i}>
+            <span className="about-stat-number">{s.number}</span>
+            <span className="about-stat-label">{s.label}</span>
           </div>
+        ))}
+      </section>
+
+      {/* ===== MISSION ===== */}
+      <section className="about-mission">
+        <div className="about-mission-inner">
+          <h2>Notre Mission</h2>
+          <p>
+            Chez SmashSmash, nous croyons que le meilleur burger est celui qui est prepare
+            avec des ingredients simples, frais et de qualite. Chaque bun est toaste,
+            chaque steak est smash a la commande, chaque sauce est faite maison.
+            Pas de compromis, juste du gout.
+          </p>
         </div>
       </section>
 
       {/* ===== TIMELINE ===== */}
       <section className="about-timeline">
-        <h2>Notre Histoire</h2>
+        <h2>Notre Parcours</h2>
         <div className="timeline-container">
           <div className="timeline-line" />
           {timeline.map((item, i) => (
@@ -147,25 +158,33 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ===== EQUIPE ===== */}
-      <section className="about-team">
-        <div className="about-team-inner">
-          <h2>L&rsquo;equipe</h2>
-          <p className="about-team-intro">
-            Des passionnes qui travaillent chaque jour pour vous offrir la meilleure experience burger.
-          </p>
-          <div className="team-grid">
-            {team.map((member, i) => (
-              <div className="team-card" key={i}>
-                <div className="team-avatar">
-                  <span>{member.initials}</span>
+      {/* ===== GALERIE NOS RESTAURANTS ===== */}
+      <section className="about-gallery">
+        <h2>Nos Restaurants</h2>
+        <p className="about-gallery-desc">Decouvrez nos espaces, concus pour vous faire vivre une experience unique.</p>
+        <div className="about-gallery-swiper">
+          <Swiper
+            modules={[Autoplay]}
+            spaceBetween={16}
+            slidesPerView={3}
+            loop={true}
+            speed={5000}
+            autoplay={{ delay: 0, disableOnInteraction: false }}
+            breakpoints={{
+              0: { slidesPerView: 1.3 },
+              480: { slidesPerView: 1.8 },
+              768: { slidesPerView: 2.5 },
+              1024: { slidesPerView: 3 },
+            }}
+          >
+            {galleryPhotos.map((src, i) => (
+              <SwiperSlide key={i}>
+                <div className="about-gallery-slide">
+                  <img src={src} alt={`Restaurant SmashSmash ${i + 1}`} loading="lazy" />
                 </div>
-                <h4>{member.name}</h4>
-                <span className="team-role">{member.role}</span>
-                <p>{member.description}</p>
-              </div>
+              </SwiperSlide>
             ))}
-          </div>
+          </Swiper>
         </div>
       </section>
 
@@ -185,6 +204,16 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ===== CTA ===== */}
+      <section className="about-cta">
+        <h2>Envie de rejoindre l&rsquo;aventure ?</h2>
+        <p>Devenez franchise SmashSmash et ouvrez votre propre restaurant.</p>
+        <div className="about-cta-buttons">
+          <a href="/franchise" className="btn-pill btn-white">Devenir Franchise</a>
+          <a href="/restaurants" className="btn-pill btn-outline-white">Nos Restaurants</a>
         </div>
       </section>
     </div>
