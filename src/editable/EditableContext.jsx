@@ -128,6 +128,18 @@ export function EditableProvider({ children }) {
     return ok
   }, [])
 
+  // ----- Inscriptions au concours (consultation editeur) -----
+  const fetchSignups = useCallback(async () => {
+    const res = await fetch('/api/signups', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'list', password }),
+    })
+    if (!res.ok) return null
+    const data = await res.json()
+    return Array.isArray(data.signups) ? data.signups : []
+  }, [password])
+
   const logout = useCallback(() => {
     setPassword('')
     setLoggedIn(false)
@@ -146,6 +158,7 @@ export function EditableProvider({ children }) {
     login,
     logout,
     status,
+    fetchSignups,
   }
 
   return <EditableContext.Provider value={value}>{children}</EditableContext.Provider>

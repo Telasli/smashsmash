@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Autoplay } from 'swiper/modules'
 import 'swiper/css'
@@ -91,6 +91,31 @@ function App() {
   const menuNextRef = useRef(null)
   const locPrevRef = useRef(null)
   const locNextRef = useRef(null)
+
+  // Inscription au concours "Gagnez un repas" (envoi vers /api/signups)
+  const [newsletterStatus, setNewsletterStatus] = useState('idle') // idle | sending | done | error
+
+  const handleNewsletter = async (e) => {
+    e.preventDefault()
+    const form = e.target
+    const data = Object.fromEntries(new FormData(form))
+    setNewsletterStatus('sending')
+    try {
+      const res = await fetch('/api/signups', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+      if (res.ok) {
+        setNewsletterStatus('done')
+        form.reset()
+      } else {
+        setNewsletterStatus('error')
+      }
+    } catch {
+      setNewsletterStatus('error')
+    }
+  }
 
   return (
     <>
@@ -205,7 +230,7 @@ function App() {
             <BurgerIcon size={48} color="white" />
           </div>
           <Editable id="home.blogcta.text" as="p">Retrouvez les dernieres actualites, mises a jour et coulisses</Editable>
-          <a href="/blog" className="btn-pill btn-white" style={{ marginTop: '20px' }}><Editable id="home.blogcta.btn">Voir le blog</Editable></a>
+          <a href="https://www.instagram.com/smashsmashfr/" target="_blank" rel="noopener noreferrer" className="btn-pill btn-white" style={{ marginTop: '20px' }}><Editable id="home.blogcta.btn">Voir nos actualites</Editable></a>
         </div>
       </section>
 
@@ -275,33 +300,39 @@ function App() {
           <Editable id="home.news.title" as="h2">Gagnez un repas pour deux !</Editable>
           <Editable id="home.news.subtitle" as="p">Inscrivez-vous a notre liste de diffusion pour tenter de gagner un repas pour deux</Editable>
 
-          <form onSubmit={(e) => e.preventDefault()}>
+          {newsletterStatus === 'done' ? (
+            <div className="newsletter-success">
+              <h3>Merci, votre inscription est enregistree !</h3>
+              <p>Bonne chance pour le tirage. Nous vous contacterons par e-mail si vous gagnez.</p>
+            </div>
+          ) : (
+          <form onSubmit={handleNewsletter}>
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="firstName"><Editable id="home.news.label.firstName">Prenom *</Editable></label>
-                <input type="text" id="firstName" placeholder="Votre prenom" required />
+                <input type="text" id="firstName" name="firstName" placeholder="Votre prenom" required />
               </div>
               <div className="form-group">
                 <label htmlFor="surname"><Editable id="home.news.label.surname">Nom *</Editable></label>
-                <input type="text" id="surname" placeholder="Votre nom" required />
+                <input type="text" id="surname" name="surname" placeholder="Votre nom" required />
               </div>
             </div>
 
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="email"><Editable id="home.news.label.email">E-mail *</Editable></label>
-                <input type="email" id="email" placeholder="votre@email.com" required />
+                <input type="email" id="email" name="email" placeholder="votre@email.com" required />
               </div>
             </div>
 
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="birthday"><Editable id="home.news.label.birthday">Votre date de naissance *</Editable></label>
-                <input type="date" id="birthday" required />
+                <input type="date" id="birthday" name="birthday" required />
               </div>
               <div className="form-group">
                 <label htmlFor="favRestaurant"><Editable id="home.news.label.favRestaurant">Votre SmashSmash prefere *</Editable></label>
-                <select id="favRestaurant" required>
+                <select id="favRestaurant" name="favRestaurant" required>
                   <option value="">Choisir un restaurant</option>
                   <option>Bordeaux</option>
                   <option>Saint Germain en Laye 78</option>
@@ -312,21 +343,13 @@ function App() {
               </div>
             </div>
 
-            <div className="form-checkboxes">
-              <Editable id="home.news.nhs.question" as="p">Faites-vous partie du NHS ou etes-vous etudiant ?</Editable>
-              <div className="checkbox-group">
-                <label className="checkbox-label">
-                  <input type="checkbox" /> <Editable id="home.news.nhs.staff">Personnel NHS</Editable>
-                </label>
-                <label className="checkbox-label">
-                  <input type="checkbox" /> <Editable id="home.news.nhs.student">Etudiant</Editable>
-                </label>
-              </div>
-            </div>
-
-            <button type="submit" className="btn-pill btn-white">
+            <button type="submit" className="btn-pill btn-white" disabled={newsletterStatus === 'sending'}>
               <Editable id="home.news.submit">Je m&rsquo;inscris</Editable>
             </button>
+
+            {newsletterStatus === 'error' && (
+              <p className="newsletter-error">Une erreur est survenue. Merci de reessayer.</p>
+            )}
 
             <div className="form-fine-print">
               <Editable id="home.news.fine1" as="p">
@@ -339,6 +362,7 @@ function App() {
               </Editable>
             </div>
           </form>
+          )}
         </div>
 
         <div className="newsletter-image">
@@ -364,7 +388,6 @@ function App() {
             agriculture ethique, et nous travaillons en permanence a reduire notre empreinte
             environnementale dans tous nos restaurants au Royaume-Uni.
           </Editable>
-          <a href="#" className="btn-pill btn-black"><Editable id="home.sustain.btn">En savoir plus sur notre impact</Editable></a>
         </div>
 
         <div className="sustainability-image">
