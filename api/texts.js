@@ -40,27 +40,6 @@ async function writeTexts(texts) {
 }
 
 export default async function handler(req, res) {
-  // ----- Diagnostic temporaire (a retirer apres debug) -----
-  // GET /api/texts?diag=1 : teste la config Blob sans mot de passe.
-  if (req.method === 'GET' && req.query && req.query.diag) {
-    const out = { hasToken: !!process.env.BLOB_READ_WRITE_TOKEN, hasPassword: !!process.env.ADMIN_PASSWORD, access: ACCESS }
-    try {
-      const r = await put('__diag.txt', 'ok', {
-        access: ACCESS, contentType: 'text/plain', allowOverwrite: true, addRandomSuffix: false,
-      })
-      out.putOk = true
-      const back = await fetch(r.url, { cache: 'no-store', headers: { Authorization: `Bearer ${process.env.BLOB_READ_WRITE_TOKEN}` } })
-      out.readBackStatus = back.status
-      out.readBackOk = back.ok
-      out.readBackBody = (await back.text()).slice(0, 20)
-    } catch (e) {
-      out.putOk = false
-      out.putError = e?.message || String(e)
-    }
-    res.setHeader('Cache-Control', 'no-store')
-    return res.status(200).json(out)
-  }
-
   // ----- Lecture publique des textes -----
   if (req.method === 'GET') {
     try {
