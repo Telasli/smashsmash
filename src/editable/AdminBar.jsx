@@ -12,7 +12,7 @@ import './editable.css'
    ================================================================ */
 
 export default function AdminBar() {
-  const { editMode, setEditMode, loggedIn, login, logout, status, resetAll, fetchSignups } = useEditable()
+  const { editMode, setEditMode, loggedIn, login, logout, status, resetAll, fetchSignups, fetchFranchise } = useEditable()
   const [visible, setVisible] = useState(() =>
     typeof window !== 'undefined' && window.location.hash === '#admin'
   )
@@ -49,11 +49,9 @@ export default function AdminBar() {
     }
   }
 
-  const handleExportSignups = async () => {
-    const rows = await fetchSignups()
-    if (rows === null) { window.alert('Impossible de recuperer les inscriptions.'); return }
-    if (rows.length === 0) { window.alert('Aucune inscription pour le moment.'); return }
-    const headers = ['date', 'firstName', 'surname', 'email', 'birthday', 'favRestaurant']
+  const downloadCsv = (rows, headers, filename, emptyMsg) => {
+    if (rows === null) { window.alert('Recuperation impossible (mot de passe ou serveur).'); return }
+    if (rows.length === 0) { window.alert(emptyMsg); return }
     const esc = (v) => `"${String(v ?? '').replace(/"/g, '""')}"`
     const csv = [
       headers.join(','),
@@ -63,9 +61,21 @@ export default function AdminBar() {
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = 'inscriptions-smashsmash.csv'
+    a.download = filename
     a.click()
     URL.revokeObjectURL(url)
+  }
+
+  const handleExportSignups = async () => {
+    const rows = await fetchSignups()
+    downloadCsv(rows, ['date', 'firstName', 'surname', 'email', 'birthday', 'favRestaurant'],
+      'inscriptions-smashsmash.csv', 'Aucune inscription pour le moment.')
+  }
+
+  const handleExportFranchise = async () => {
+    const rows = await fetchFranchise()
+    downloadCsv(rows, ['date', 'firstName', 'lastName', 'email', 'phone', 'city', 'investment', 'experience', 'message'],
+      'candidatures-franchise.csv', 'Aucune candidature pour le moment.')
   }
 
   const statusLabel = {
@@ -111,6 +121,10 @@ export default function AdminBar() {
 
           <button className="admin-bar-reset" onClick={handleExportSignups}>
             Inscriptions (CSV)
+          </button>
+
+          <button className="admin-bar-reset" onClick={handleExportFranchise}>
+            Candidatures (CSV)
           </button>
 
           <button

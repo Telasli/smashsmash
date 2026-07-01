@@ -140,6 +140,17 @@ export function EditableProvider({ children }) {
     return Array.isArray(data.signups) ? data.signups : []
   }, [password])
 
+  const fetchFranchise = useCallback(async () => {
+    const res = await fetch('/api/franchise', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'list', password }),
+    })
+    if (!res.ok) return null
+    const data = await res.json()
+    return Array.isArray(data.applications) ? data.applications : []
+  }, [password])
+
   const logout = useCallback(() => {
     setPassword('')
     setLoggedIn(false)
@@ -159,6 +170,7 @@ export function EditableProvider({ children }) {
     logout,
     status,
     fetchSignups,
+    fetchFranchise,
   }
 
   return <EditableContext.Provider value={value}>{children}</EditableContext.Provider>

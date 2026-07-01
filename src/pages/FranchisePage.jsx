@@ -83,26 +83,41 @@ const steps = [
   { number: '06', title: 'Ouverture', description: "Lancement de votre restaurant avec le soutien complet de notre equipe sur place." },
 ]
 
-const stats = [
-  { value: '15+', label: 'Restaurants' },
-  { value: '500K+', label: 'Burgers vendus' },
-  { value: '14', label: "Mois pour la rentabilite" },
-  { value: '95%', label: 'Satisfaction franchises' },
-]
-
 export default function FranchisePage() {
   const [form, setForm] = useState({
     firstName: '', lastName: '', email: '', phone: '',
     city: '', investment: '', message: '', experience: '',
   })
+  const [submitStatus, setSubmitStatus] = useState('idle') // idle | sending | done | error
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
+    const { name, value } = e.target
+    // Telephone : n'autorise que chiffres, espaces et + ( ) . -
+    if (name === 'phone') {
+      setForm((f) => ({ ...f, phone: value.replace(/[^0-9+()\s.-]/g, '') }))
+      return
+    }
+    setForm((f) => ({ ...f, [name]: value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    alert('Merci pour votre candidature ! Notre equipe vous contactera sous 48h.')
+    setSubmitStatus('sending')
+    try {
+      const res = await fetch('/api/franchise', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (res.ok) {
+        setSubmitStatus('done')
+        setForm({ firstName: '', lastName: '', email: '', phone: '', city: '', investment: '', message: '', experience: '' })
+      } else {
+        setSubmitStatus('error')
+      }
+    } catch {
+      setSubmitStatus('error')
+    }
   }
 
   return (
@@ -122,17 +137,8 @@ export default function FranchisePage() {
         </div>
       </section>
 
-      {/* ===== STATS ===== */}
-      <section className="franchise-stats">
-        <div className="franchise-stats-inner">
-          {stats.map((stat, i) => (
-            <div className="franchise-stat" key={i}>
-              <Editable id={`fr.stat.${i}.value`} as="span" className="franchise-stat-value">{stat.value}</Editable>
-              <Editable id={`fr.stat.${i}.label`} as="span" className="franchise-stat-label">{stat.label}</Editable>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* ===== BANDE NOIRE ===== */}
+      <section className="franchise-band" aria-hidden="true" />
 
       {/* ===== AVANTAGES ===== */}
       <section className="franchise-advantages">
@@ -173,24 +179,6 @@ export default function FranchisePage() {
         </div>
       </section>
 
-      {/* ===== TEMOIGNAGE ===== */}
-      <section className="franchise-testimonial">
-        <div className="franchise-testimonial-inner">
-          <Editable id="fr.testimonial.quote" as="blockquote">
-            &laquo; Ouvrir un SmashSmash a ete la meilleure decision de ma carriere.
-            L&rsquo;accompagnement est exceptionnel et les resultats ont depasse
-            toutes mes attentes des le premier mois. &raquo;
-          </Editable>
-          <div className="testimonial-author">
-            <Editable id="fr.testimonial.avatar" as="div" className="testimonial-avatar">JR</Editable>
-            <div>
-              <Editable id="fr.testimonial.author" as="strong">Julien Roux</Editable>
-              <Editable id="fr.testimonial.role" as="span">Franchise SmashSmash Lyon</Editable>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ===== FORMULAIRE DE CONTACT ===== */}
       <section className="franchise-form-section" id="contact-form">
         <div className="franchise-form-inner">
@@ -225,6 +213,12 @@ export default function FranchisePage() {
             </div>
           </div>
 
+          {submitStatus === 'done' ? (
+            <div className="franchise-success">
+              <h3>Merci pour votre candidature !</h3>
+              <p>Notre equipe franchise vous recontactera sous 48 heures pour un premier echange.</p>
+            </div>
+          ) : (
           <form className="franchise-form" onSubmit={handleSubmit}>
             <div className="franchise-form-row">
               <div className="franchise-form-group">
@@ -244,7 +238,18 @@ export default function FranchisePage() {
               </div>
               <div className="franchise-form-group">
                 <label htmlFor="phone"><Editable id="fr.form.label.phone">Telephone *</Editable></label>
-                <input type="tel" id="phone" name="phone" value={form.phone} onChange={handleChange} placeholder="06 12 34 56 78" required />
+                <input
+                  type="tel"
+                  inputMode="tel"
+                  pattern="[0-9+()\s.-]{6,20}"
+                  title="Numero de telephone : chiffres, espaces et + ( ) . - uniquement (6 a 20 caracteres)"
+                  id="phone"
+                  name="phone"
+                  value={form.phone}
+                  onChange={handleChange}
+                  placeholder="06 12 34 56 78"
+                  required
+                />
               </div>
             </div>
 
@@ -291,10 +296,15 @@ export default function FranchisePage() {
               </label>
             </div>
 
-            <button type="submit" className="btn-pill btn-green-solid franchise-submit">
+            <button type="submit" className="btn-pill btn-green-solid franchise-submit" disabled={submitStatus === 'sending'}>
               <Editable id="fr.form.submit">Envoyer ma candidature</Editable>
             </button>
+
+            {submitStatus === 'error' && (
+              <p className="franchise-error">Une erreur est survenue. Merci de reessayer.</p>
+            )}
           </form>
+          )}
         </div>
       </section>
     </div>
