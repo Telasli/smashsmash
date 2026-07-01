@@ -12,6 +12,19 @@ Site vitrine pour **SmashSmash**, marque de smash burgers nee en France. Applica
 - **Fonts** : Cooper Hewitt (titres via fontsource CDN) + DM Sans (body via Google Fonts) + Jost (fallback)
 - **CSS** : CSS pur (pas de framework), un fichier CSS par page + App.css pour les styles globaux/partages
 - **Langue** : Francais (html lang="fr")
+- **Edition des textes** : tous les textes visibles sont editables en ligne via `<Editable>`, stockes sur Vercel Blob, proteges par mot de passe (voir `EDITION.md`)
+
+## Systeme d'edition des textes (Vercel)
+
+Tous les textes du site sont modifiables en direct par un editeur connecte (voir `EDITION.md` pour la config et l'usage).
+
+- `api/texts.js` : fonction serverless Vercel. `GET` renvoie le JSON des textes ; `POST` (protege par la variable d'env `ADMIN_PASSWORD`) l'enregistre dans le Blob `site-texts.json`. Necessite un store **Vercel Blob** (`BLOB_READ_WRITE_TOKEN`).
+- `src/editable/EditableContext.jsx` : provider global (`<EditableProvider>` dans `main.jsx`) — charge les overrides, cache `localStorage`, auth par mot de passe, enregistrement auto (debounce).
+- `src/editable/Editable.jsx` : `<Editable id="cle.unique" as="h2">Texte par defaut</Editable>`. Affiche l'override enregistre (via innerHTML imperatif) sinon les enfants JSX d'origine. En mode edition : `contentEditable`, enregistrement au blur, Alt+clic = reinitialiser.
+- `src/editable/AdminBar.jsx` : barre d'admin cachee (revelee par **Ctrl+Shift+E** ou `#admin`), dans le `Layout`.
+- **Ids** : convention `page.section.element` (ex. `home.hero.title`, `menu.item.burgers.0.name`, `about.timeline.2.desc`). Les textes partages (nav, footer) reutilisent la meme cle sur toutes les pages.
+- **Degradation** : sans Blob/mot de passe configures, le site affiche les textes par defaut — rien ne casse. `npm run dev` (Vite seul) ne sert pas `/api` ; utiliser `vercel dev` pour tester l'edition.
+- **Non couvert** : placeholders d'inputs, `alt` d'images, options de `<select>` (attributs, pas des noeuds texte).
 
 ## Charte graphique
 

@@ -9,6 +9,8 @@ import AboutPage from './pages/AboutPage.jsx'
 import FranchisePage from './pages/FranchisePage.jsx'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
+import { EditableProvider } from './editable/EditableContext.jsx'
+import AdminBar from './editable/AdminBar.jsx'
 import './App.css'
 
 function ScrollToTop() {
@@ -25,21 +27,24 @@ function Layout({ children }) {
       <Navbar />
       {children}
       <Footer />
+      <AdminBar />
     </>
   )
 }
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Layout><App /></Layout>} />
-        <Route path="/menu" element={<Layout><MenuPage /></Layout>} />
-        <Route path="/restaurants" element={<Layout><LocationsPage /></Layout>} />
-        <Route path="/notre-histoire" element={<Layout><AboutPage /></Layout>} />
-        <Route path="/franchise" element={<Layout><FranchisePage /></Layout>} />
-      </Routes>
-    </BrowserRouter>
+    <EditableProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Layout><App /></Layout>} />
+          <Route path="/menu" element={<Layout><MenuPage /></Layout>} />
+          <Route path="/restaurants" element={<Layout><LocationsPage /></Layout>} />
+          <Route path="/notre-histoire" element={<Layout><AboutPage /></Layout>} />
+          <Route path="/franchise" element={<Layout><FranchisePage /></Layout>} />
+        </Routes>
+      </BrowserRouter>
+    </EditableProvider>
   </StrictMode>,
 )

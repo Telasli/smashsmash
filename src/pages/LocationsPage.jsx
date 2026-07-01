@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
+import Editable from '../editable/Editable'
 import './LocationsPage.css'
 
 /* ================================================================
@@ -116,10 +117,10 @@ export default function LocationsPage() {
     <div className="locations-page">
       {/* ===== HERO + RECHERCHE ===== */}
       <section className="loc-hero">
-        <h1>Trouvez votre SmashSmash</h1>
-        <p className="loc-hero-desc">
+        <Editable id="loc.hero.title" as="h1">Trouvez votre SmashSmash</Editable>
+        <Editable id="loc.hero.desc" as="p" className="loc-hero-desc">
           Recherchez votre ville ou entrez votre code postal pour trouver un restaurant pres de chez vous.
-        </p>
+        </Editable>
         <div className="loc-search-inner">
           <input
             type="text"
@@ -127,11 +128,11 @@ export default function LocationsPage() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <button className="loc-find-btn">Rechercher</button>
+          <button className="loc-find-btn"><Editable id="loc.search.btn">Rechercher</Editable></button>
         </div>
         <button className="loc-geo-btn" onClick={handleGeolocate} disabled={geoLoading}>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
-          {geoLoading ? 'Localisation...' : 'Utiliser ma position'}
+          {geoLoading ? 'Localisation...' : <Editable id="loc.geo.btn">Utiliser ma position</Editable>}
         </button>
       </section>
 
@@ -144,13 +145,15 @@ export default function LocationsPage() {
                 <div className="loc-card-top">
                   <span className={`loc-status-dot loc-status-dot--${loc.status}`} />
                   <span className="loc-status-label">
-                    {loc.status === 'open' ? 'Ouvert' : 'Bientot'}
+                    {loc.status === 'open'
+                      ? <Editable id="loc.status.open">Ouvert</Editable>
+                      : <Editable id="loc.status.coming">Bientot</Editable>}
                   </span>
                 </div>
               </div>
               <div className="loc-card-body">
                 <h3 className="loc-card-name">
-                  {loc.name}
+                  <Editable id={`loc.card.${loc.name}.name`}>{loc.name}</Editable>
                   {userPos && loc.lat && (
                     <span className="loc-card-distance">
                       {Math.round(getDistance(userPos.lat, userPos.lng, loc.lat, loc.lng))} km
@@ -160,27 +163,27 @@ export default function LocationsPage() {
                 <div className="loc-card-details">
                   <p className="loc-card-addr">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                    {loc.address}
+                    <Editable id={`loc.card.${loc.name}.address`}>{loc.address}</Editable>
                   </p>
                   <p className="loc-card-hours">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    {loc.hours}
+                    <Editable id={`loc.card.${loc.name}.hours`}>{loc.hours}</Editable>
                   </p>
                     </div>
                 <div className="loc-card-actions">
                   {loc.status === 'open' ? (
                     <>
                       {loc.orderUrl ? (
-                        <a href={loc.orderUrl} className="btn-pill btn-green-solid loc-card-order">Commander en ligne</a>
+                        <a href={loc.orderUrl} className="btn-pill btn-green-solid loc-card-order"><Editable id="loc.btn.order">Commander en ligne</Editable></a>
                       ) : (
-                        <span className="btn-pill loc-card-order-disabled">Commande en ligne bientot</span>
+                        <span className="btn-pill loc-card-order-disabled"><Editable id="loc.btn.orderSoon">Commande en ligne bientot</Editable></span>
                       )}
                       {loc.googleUrl && (
-                        <a href={loc.googleUrl} target="_blank" rel="noopener noreferrer" className="btn-pill loc-card-info">Plus d&rsquo;info</a>
+                        <a href={loc.googleUrl} target="_blank" rel="noopener noreferrer" className="btn-pill loc-card-info"><Editable id="loc.btn.info">Plus d&rsquo;info</Editable></a>
                       )}
                     </>
                   ) : (
-                    <span className="btn-pill loc-card-coming-btn">Ouverture prochaine</span>
+                    <span className="btn-pill loc-card-coming-btn"><Editable id="loc.btn.coming">Ouverture prochaine</Editable></span>
                   )}
                 </div>
               </div>
@@ -188,13 +191,13 @@ export default function LocationsPage() {
           ))}
         </div>
         {filtered.length === 0 && (
-          <p className="loc-no-results">Aucun restaurant trouve pour cette recherche.</p>
+          <Editable id="loc.noresults" as="p" className="loc-no-results">Aucun restaurant trouve pour cette recherche.</Editable>
         )}
       </section>
 
       {/* ===== GALERIE RESTAURANTS ===== */}
       <section className="loc-gallery">
-        <h2>Nos Restaurants en images</h2>
+        <Editable id="loc.gallery.title" as="h2">Nos Restaurants en images</Editable>
         <div className="loc-gallery-swiper">
           <Swiper
             modules={[Autoplay]}

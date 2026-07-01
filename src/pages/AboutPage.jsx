@@ -1,3 +1,4 @@
+import Editable from '../editable/Editable'
 import './AboutPage.css'
 
 /* ================================================================
@@ -106,16 +107,16 @@ export default function AboutPage() {
       <section className="about-hero pattern-lines">
         <div className="about-hero-inner">
           <div className="about-hero-content">
-            <span className="about-hero-tag">Notre Histoire</span>
-            <h1>Ne de la passion du Smash Burger</h1>
-            <p className="about-hero-lead">
+            <Editable id="about.hero.tag" as="span" className="about-hero-tag">Notre Histoire</Editable>
+            <Editable id="about.hero.title" as="h1">Ne de la passion du Smash Burger</Editable>
+            <Editable id="about.hero.lead" as="p" className="about-hero-lead">
               Depuis 2019, SmashSmash ecrit une nouvelle page de la street food en France.
               Des ingredients sourcés localement, une cuisson signature et un engagement
               sans compromis pour le gout.
-            </p>
+            </Editable>
             <div className="about-hero-buttons">
-              <a href="/menu" className="btn-pill btn-white">Voir le Menu</a>
-              <a href="/restaurants" className="btn-pill btn-outline-white">Nos Restaurants</a>
+              <a href="/menu" className="btn-pill btn-white"><Editable id="about.hero.btn.menu">Voir le Menu</Editable></a>
+              <a href="/restaurants" className="btn-pill btn-outline-white"><Editable id="about.hero.btn.loc">Nos Restaurants</Editable></a>
             </div>
           </div>
           <div className="about-hero-image">
@@ -130,17 +131,17 @@ export default function AboutPage() {
 
       {/* ===== TIMELINE ===== */}
       <section className="about-timeline">
-        <h2>Notre Histoire</h2>
+        <Editable id="about.timeline.title" as="h2">Notre Histoire</Editable>
         <div className="timeline-container">
           <div className="timeline-line" />
           {timeline.map((item, i) => (
             <div className={`timeline-item ${i % 2 === 0 ? 'timeline-item--left' : 'timeline-item--right'}`} key={i}>
               <div className="timeline-dot">
-                <span>{item.year}</span>
+                <Editable id={`about.timeline.${i}.year`} as="span">{item.year}</Editable>
               </div>
               <div className="timeline-card">
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
+                <Editable id={`about.timeline.${i}.title`} as="h3">{item.title}</Editable>
+                <Editable id={`about.timeline.${i}.desc`} as="p">{item.description}</Editable>
               </div>
             </div>
           ))}
@@ -150,19 +151,19 @@ export default function AboutPage() {
       {/* ===== EQUIPE ===== */}
       <section className="about-team">
         <div className="about-team-inner">
-          <h2>L&rsquo;equipe</h2>
-          <p className="about-team-intro">
+          <Editable id="about.team.title" as="h2">L&rsquo;equipe</Editable>
+          <Editable id="about.team.intro" as="p" className="about-team-intro">
             Des passionnes qui travaillent chaque jour pour vous offrir la meilleure experience burger.
-          </p>
+          </Editable>
           <div className="team-grid">
             {team.map((member, i) => (
               <div className="team-card" key={i}>
                 <div className="team-avatar">
-                  <span>{member.initials}</span>
+                  <Editable id={`about.team.${i}.initials`} as="span">{member.initials}</Editable>
                 </div>
-                <h4>{member.name}</h4>
-                <span className="team-role">{member.role}</span>
-                <p>{member.description}</p>
+                <Editable id={`about.team.${i}.name`} as="h4">{member.name}</Editable>
+                <Editable id={`about.team.${i}.role`} as="span" className="team-role">{member.role}</Editable>
+                <Editable id={`about.team.${i}.desc`} as="p">{member.description}</Editable>
               </div>
             ))}
           </div>
@@ -172,16 +173,16 @@ export default function AboutPage() {
       {/* ===== ENGAGEMENTS ===== */}
       <section className="about-commitments">
         <div className="about-commitments-inner">
-          <h2>Nos Engagements</h2>
-          <p className="about-commitments-intro">
+          <Editable id="about.commit.title" as="h2">Nos Engagements</Editable>
+          <Editable id="about.commit.intro" as="p" className="about-commitments-intro">
             Nous croyons qu&rsquo;une entreprise de restauration peut etre responsable et delicieuse a la fois.
-          </p>
+          </Editable>
           <div className="commitments-grid">
             {commitments.map((item, i) => (
               <div className="commitment-card" key={i}>
                 <div className="commitment-icon">{item.icon}</div>
-                <h4>{item.title}</h4>
-                <p>{item.description}</p>
+                <Editable id={`about.commit.${i}.title`} as="h4">{item.title}</Editable>
+                <Editable id={`about.commit.${i}.desc`} as="p">{item.description}</Editable>
               </div>
             ))}
           </div>

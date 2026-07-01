@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
+import Editable from '../editable/Editable'
 
 function SmashSmashLogo({ height = 65 }) {
   return (
@@ -38,12 +39,12 @@ export default function Navbar() {
             <SmashSmashLogo />
           </Link>
           <div className="navbar-links">
-            <NavLink to="/">Accueil</NavLink>
-            <NavLink to="/menu">Menu</NavLink>
-            <NavLink to="/restaurants">Nos Restaurants</NavLink>
-            <NavLink to="/notre-histoire">Notre Histoire</NavLink>
-            <NavLink to="/franchise">Devenir Franchise</NavLink>
-            <Link to="/restaurants" className="btn-order">Commander</Link>
+            <NavLink to="/"><Editable id="nav.accueil">Accueil</Editable></NavLink>
+            <NavLink to="/menu"><Editable id="nav.menu">Menu</Editable></NavLink>
+            <NavLink to="/restaurants"><Editable id="nav.restaurants">Nos Restaurants</Editable></NavLink>
+            <NavLink to="/notre-histoire"><Editable id="nav.histoire">Notre Histoire</Editable></NavLink>
+            <NavLink to="/franchise"><Editable id="nav.franchise">Devenir Franchise</Editable></NavLink>
+            <Link to="/restaurants" className="btn-order"><Editable id="nav.commander">Commander</Editable></Link>
           </div>
           <button
             className={`mobile-menu-btn ${menuOpen ? 'mobile-menu-btn--open' : ''}`}
@@ -59,14 +60,14 @@ export default function Navbar() {
       <div className={`mobile-menu ${menuOpen ? 'mobile-menu--open' : ''}`}>
         <div className="mobile-menu-content">
           <div className="mobile-menu-nav">
-            <NavLink to="/" end onClick={closeMenu}>Accueil</NavLink>
-            <NavLink to="/menu" onClick={closeMenu}>Menu</NavLink>
-            <NavLink to="/restaurants" onClick={closeMenu}>Nos Restaurants</NavLink>
-            <NavLink to="/notre-histoire" onClick={closeMenu}>Notre Histoire</NavLink>
-            <NavLink to="/franchise" onClick={closeMenu}>Devenir Franchise</NavLink>
+            <NavLink to="/" end onClick={closeMenu}><Editable id="nav.accueil">Accueil</Editable></NavLink>
+            <NavLink to="/menu" onClick={closeMenu}><Editable id="nav.menu">Menu</Editable></NavLink>
+            <NavLink to="/restaurants" onClick={closeMenu}><Editable id="nav.restaurants">Nos Restaurants</Editable></NavLink>
+            <NavLink to="/notre-histoire" onClick={closeMenu}><Editable id="nav.histoire">Notre Histoire</Editable></NavLink>
+            <NavLink to="/franchise" onClick={closeMenu}><Editable id="nav.franchise">Devenir Franchise</Editable></NavLink>
           </div>
           <div className="mobile-menu-bottom">
-            <Link to="/restaurants" className="btn-pill btn-green-solid mobile-menu-order" onClick={closeMenu}>Commander</Link>
+            <Link to="/restaurants" className="btn-pill btn-green-solid mobile-menu-order" onClick={closeMenu}><Editable id="nav.commander">Commander</Editable></Link>
             <div className="mobile-menu-socials">
               <a href="https://www.instagram.com/smashsmashfr/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" strokeWidth="1.5" /><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" strokeWidth="1.5" /><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" /></svg>

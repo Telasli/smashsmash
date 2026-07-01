@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import Editable from '../editable/Editable'
 import './MenuPage.css'
 
 /* ================================================================
@@ -236,8 +237,8 @@ export default function MenuPage() {
       {/* ===== HEADER ===== */}
       <div className="menu-page-header pattern-lines-dark">
         <div className="menu-page-header-inner">
-          <h1>Notre Menu</h1>
-          <a href="/restaurants" className="btn-pill btn-green-solid">Commander</a>
+          <Editable id="menu.header.title" as="h1">Notre Menu</Editable>
+          <a href="/restaurants" className="btn-pill btn-green-solid"><Editable id="menu.header.btn">Commander</Editable></a>
         </div>
       </div>
 
@@ -258,7 +259,7 @@ export default function MenuPage() {
               onClick={() => handleCategoryClick(cat.id)}
             >
               <span className="menu-tab-icon">{CategoryIcons[cat.icon]}</span>
-              {cat.name}
+              <Editable id={`menu.cat.${cat.id}.name`}>{cat.name}</Editable>
             </button>
           ))}
         </div>
@@ -285,7 +286,7 @@ export default function MenuPage() {
               className="menu-section"
             >
               {/* Titre de la section */}
-              <h2 className="menu-section-title">{data.title}</h2>
+              <Editable id={`menu.section.${cat.id}.title`} as="h2" className="menu-section-title">{data.title}</Editable>
 
               {/* Featured banner pour Edition Limitee */}
               {data.featured && (
@@ -305,7 +306,7 @@ export default function MenuPage() {
                 </div>
               )}
               {data.description && (
-                <p className="menu-section-desc">{data.description}</p>
+                <Editable id={`menu.section.${cat.id}.desc`} as="p" className="menu-section-desc">{data.description}</Editable>
               )}
 
               {/* Grille de produits */}
@@ -322,8 +323,8 @@ export default function MenuPage() {
                             {item.tag}
                           </span>
                         )}
-                        <h3 className="menu-item-name">{item.name}</h3>
-                        <p className="menu-item-desc">{item.description}</p>
+                        <Editable id={`menu.item.${cat.id}.${i}.name`} as="h3" className="menu-item-name">{item.name}</Editable>
+                        <Editable id={`menu.item.${cat.id}.${i}.desc`} as="p" className="menu-item-desc">{item.description}</Editable>
                       </div>
                     </div>
                   ))}
