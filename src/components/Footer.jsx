@@ -13,15 +13,13 @@ export default function Footer() {
               Burgers smashes, frites crinkle-cut, milkshakes faits maison et bien plus.
               Ne a Paris, desormais dans toute la France et en Belgique.
             </Editable>
-            <div className="footer-cert" style={{ display: 'none' }}>
+            <div className="footer-cert">
               <img
                 src="/achahada.png"
                 alt="Certifie Halal ACHAHADA"
                 loading="lazy"
-                onLoad={(e) => { const c = e.currentTarget.closest('.footer-cert'); if (c) c.style.display = 'flex' }}
                 onError={(e) => { const c = e.currentTarget.closest('.footer-cert'); if (c) c.style.display = 'none' }}
               />
-              <span>Certifie Halal</span>
             </div>
           </div>
           <div className="footer-columns">
