@@ -16,6 +16,32 @@ import { put, list } from '@vercel/blob'
 const BLOB_PATH = 'site-texts.json'
 
 export default async function handler(req, res) {
+  // ----- Diagnostic temporaire (a retirer apres debug) -----
+  // GET /api/texts?diag=1 : teste la config Blob sans mot de passe.
+  if (req.method === 'GET' && req.query && req.query.diag) {
+    const out = { hasToken: !!process.env.BLOB_READ_WRITE_TOKEN, hasPassword: !!process.env.ADMIN_PASSWORD }
+    try {
+      const { blobs } = await list({ prefix: BLOB_PATH, limit: 1 })
+      out.listOk = true
+      out.blobCount = blobs.length
+    } catch (e) {
+      out.listOk = false
+      out.listError = e?.message || String(e)
+    }
+    try {
+      const r = await put('__diag.txt', 'ok', {
+        access: 'public', contentType: 'text/plain', allowOverwrite: true, addRandomSuffix: false,
+      })
+      out.putOk = true
+      out.putUrl = r?.url
+    } catch (e) {
+      out.putOk = false
+      out.putError = e?.message || String(e)
+    }
+    res.setHeader('Cache-Control', 'no-store')
+    return res.status(200).json(out)
+  }
+
   // ----- Lecture publique des textes -----
   if (req.method === 'GET') {
     try {
