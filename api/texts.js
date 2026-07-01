@@ -7,33 +7,52 @@ import { put, list } from '@vercel/blob'
    POST  -> { password, action:'verify' }        -> valide le mot de passe
             { password, texts:{...} }             -> enregistre les textes
    ----------------------------------------------------------------
+   Le store Blob est en acces PRIVE : on ecrit et on relit le contenu
+   cote serveur avec le token BLOB_READ_WRITE_TOKEN.
+   ----------------------------------------------------------------
    Variables d'environnement Vercel requises :
    - ADMIN_PASSWORD        : mot de passe de l'editeur (vous)
-   - BLOB_READ_WRITE_TOKEN : injecte automatiquement quand un
-                             store Blob est lie au projet
+   - BLOB_READ_WRITE_TOKEN : injecte quand le store Blob est lie
    ================================================================ */
 
 const BLOB_PATH = 'site-texts.json'
+const ACCESS = 'private'
+
+async function readTexts() {
+  const { blobs } = await list({ prefix: BLOB_PATH, limit: 1 })
+  const found = blobs.find((b) => b.pathname === BLOB_PATH)
+  if (!found) return {}
+  const r = await fetch(found.url, {
+    cache: 'no-store',
+    headers: { Authorization: `Bearer ${process.env.BLOB_READ_WRITE_TOKEN}` },
+  })
+  if (!r.ok) throw new Error(`Lecture blob: HTTP ${r.status}`)
+  return await r.json()
+}
+
+async function writeTexts(texts) {
+  return put(BLOB_PATH, JSON.stringify(texts), {
+    access: ACCESS,
+    contentType: 'application/json',
+    allowOverwrite: true,
+    addRandomSuffix: false,
+  })
+}
 
 export default async function handler(req, res) {
   // ----- Diagnostic temporaire (a retirer apres debug) -----
   // GET /api/texts?diag=1 : teste la config Blob sans mot de passe.
   if (req.method === 'GET' && req.query && req.query.diag) {
-    const out = { hasToken: !!process.env.BLOB_READ_WRITE_TOKEN, hasPassword: !!process.env.ADMIN_PASSWORD }
-    try {
-      const { blobs } = await list({ prefix: BLOB_PATH, limit: 1 })
-      out.listOk = true
-      out.blobCount = blobs.length
-    } catch (e) {
-      out.listOk = false
-      out.listError = e?.message || String(e)
-    }
+    const out = { hasToken: !!process.env.BLOB_READ_WRITE_TOKEN, hasPassword: !!process.env.ADMIN_PASSWORD, access: ACCESS }
     try {
       const r = await put('__diag.txt', 'ok', {
-        access: 'public', contentType: 'text/plain', allowOverwrite: true, addRandomSuffix: false,
+        access: ACCESS, contentType: 'text/plain', allowOverwrite: true, addRandomSuffix: false,
       })
       out.putOk = true
-      out.putUrl = r?.url
+      const back = await fetch(r.url, { cache: 'no-store', headers: { Authorization: `Bearer ${process.env.BLOB_READ_WRITE_TOKEN}` } })
+      out.readBackStatus = back.status
+      out.readBackOk = back.ok
+      out.readBackBody = (await back.text()).slice(0, 20)
     } catch (e) {
       out.putOk = false
       out.putError = e?.message || String(e)
@@ -45,14 +64,7 @@ export default async function handler(req, res) {
   // ----- Lecture publique des textes -----
   if (req.method === 'GET') {
     try {
-      const { blobs } = await list({ prefix: BLOB_PATH, limit: 1 })
-      const found = blobs.find((b) => b.pathname === BLOB_PATH)
-      if (!found) {
-        res.setHeader('Cache-Control', 'no-store')
-        return res.status(200).json({})
-      }
-      const r = await fetch(found.url, { cache: 'no-store' })
-      const data = await r.json()
+      const data = await readTexts()
       res.setHeader('Cache-Control', 'no-store')
       return res.status(200).json(data)
     } catch {
@@ -81,12 +93,7 @@ export default async function handler(req, res) {
     }
 
     try {
-      await put(BLOB_PATH, JSON.stringify(texts), {
-        access: 'public',
-        contentType: 'application/json',
-        allowOverwrite: true,
-        addRandomSuffix: false,
-      })
+      await writeTexts(texts)
       return res.status(200).json({ ok: true, count: Object.keys(texts).length })
     } catch (e) {
       return res.status(500).json({ error: 'Echec de l\'enregistrement : ' + (e?.message || 'inconnu') })
