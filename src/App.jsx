@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
+import Editable from './editable/Editable'
 
 /* ================================================================
    SMASHSMASH - PAGE D'ACCUEIL
@@ -105,11 +106,11 @@ function App() {
         />
         <div className="hero-video-overlay" />
         <div className="hero-video-content">
-          <h1 className="hero-anim hero-anim-1">Une envie de burger <span className="hero-highlight">irresistible</span> ?</h1>
-          <p className="hero-anim hero-anim-2">Notre menu a duree limitee est arrive !</p>
+          <Editable id="home.hero.title" as="h1" className="hero-anim hero-anim-1">Une envie de burger <span className="hero-highlight">irresistible</span> ?</Editable>
+          <Editable id="home.hero.subtitle" as="p" className="hero-anim hero-anim-2">Notre menu a duree limitee est arrive !</Editable>
           <div className="hero-buttons hero-anim hero-anim-3">
-            <a href="/restaurants" className="btn-pill btn-white">Commander</a>
-            <a href="/menu" className="btn-pill btn-outline-white">Voir le Menu</a>
+            <a href="/restaurants" className="btn-pill btn-white"><Editable id="home.hero.btn.order">Commander</Editable></a>
+            <a href="/menu" className="btn-pill btn-outline-white"><Editable id="home.hero.btn.menu">Voir le Menu</Editable></a>
           </div>
         </div>
         <div className="hero-scroll-hint">
@@ -121,12 +122,12 @@ function App() {
 
       {/* ===== 5. SECTION NOTRE MENU ===== */}
       <section className="our-menu">
-        <h2>Notre Menu</h2>
-        <p>
+        <Editable id="home.menu.title" as="h2">Notre Menu</Editable>
+        <Editable id="home.menu.text" as="p">
           Decouvrez nos classiques SmashSmash : burgers, poulet, hot dogs, milkshakes faits maison
           et bien plus encore ; le tout prepare avec des ingredients simples, frais et de haute qualite.
           Nous travaillons avec les meilleurs fermiers, boulangers et artisans pour des ingredients locaux et premium.
-        </p>
+        </Editable>
 
         <div className="menu-swiper-wrapper">
           <button ref={menuPrevRef} className="swiper-nav-btn swiper-nav-prev" aria-label="Precedent">
@@ -161,7 +162,7 @@ function App() {
                   <div className="menu-card-image">
                     <img src={item.image} alt={item.name} loading="lazy" />
                   </div>
-                  <h4>{item.name}</h4>
+                  <Editable id={`home.menucard.${item.name}`} as="h4">{item.name}</Editable>
                   {item.tag && <span className="tag">{item.tag}</span>}
                 </div>
               </SwiperSlide>
@@ -169,25 +170,25 @@ function App() {
           </Swiper>
         </div>
 
-        <a href="/menu" className="btn-pill btn-outline-black">Decouvrir le Menu</a>
+        <a href="/menu" className="btn-pill btn-outline-black"><Editable id="home.menu.btn">Decouvrir le Menu</Editable></a>
       </section>
 
       {/* ===== 4. SECTION LIVRAISON ===== */}
       <section className="delivery pattern-lines-dark">
-        <h2>Faites-vous livrer des burgers pres de chez vous</h2>
-        <a href="/restaurants" className="btn-pill btn-green-solid delivery-cta">Commander</a>
+        <Editable id="home.delivery.title" as="h2">Faites-vous livrer des burgers pres de chez vous</Editable>
+        <a href="/restaurants" className="btn-pill btn-green-solid delivery-cta"><Editable id="home.delivery.btn">Commander</Editable></a>
       </section>
 
       {/* ===== 6. SECTION BLOG / ACTUALITES ===== */}
       <section className="blog-section">
         <div className="blog-text">
-          <h3>Decouvrez l&rsquo;artiste derriere notre SmashSmash de King&rsquo;s Cross Station</h3>
-          <p>
+          <Editable id="home.blog.title" as="h3">Decouvrez l&rsquo;artiste derriere notre SmashSmash de King&rsquo;s Cross Station</Editable>
+          <Editable id="home.blog.text" as="p">
             Quand nous avons ouvert les portes de notre SmashSmash de King&rsquo;s Cross, nous voulions
             que l&rsquo;espace soit aussi vivant et creatif que le quartier lui-meme&hellip;
-          </p>
+          </Editable>
           <div>
-            <a href="/notre-histoire" className="btn-pill btn-black">En savoir plus</a>
+            <a href="/notre-histoire" className="btn-pill btn-black"><Editable id="home.blog.btn">En savoir plus</Editable></a>
           </div>
         </div>
 
@@ -203,26 +204,26 @@ function App() {
           <div className="blog-cta-icon">
             <BurgerIcon size={48} color="white" />
           </div>
-          <p>Retrouvez les dernieres actualites, mises a jour et coulisses</p>
-          <a href="/blog" className="btn-pill btn-white" style={{ marginTop: '20px' }}>Voir le blog</a>
+          <Editable id="home.blogcta.text" as="p">Retrouvez les dernieres actualites, mises a jour et coulisses</Editable>
+          <a href="/blog" className="btn-pill btn-white" style={{ marginTop: '20px' }}><Editable id="home.blogcta.btn">Voir le blog</Editable></a>
         </div>
       </section>
 
       {/* ===== 7. LES MEILLEURS BURGERS ===== */}
       <section className="best-burgers">
-        <h2>Les meilleurs burgers a Bordeaux, Saint Germain en Laye et Calais</h2>
-        <p>
+        <Editable id="home.best.title" as="h2">Les meilleurs burgers a Bordeaux, Saint Germain en Laye et Calais</Editable>
+        <Editable id="home.best.text" as="p">
           Passez dans votre SmashSmash le plus proche pour savourer votre burger prefere, des frites
           crinkle-cut et des milkshakes faits maison. Ou restez chez vous et laissez-nous vous
           livrer nos burgers et milkshakes directement a votre porte.
-        </p>
+        </Editable>
         <hr />
       </section>
 
       {/* ===== 8. SECTION TOUS LES RESTAURANTS ===== */}
       <section className="locations-section">
-        <h2>Tous nos restaurants</h2>
-        <p>Trouvez un restaurant de burgers pres de chez vous, ouvert sur place ou en livraison.</p>
+        <Editable id="home.locations.title" as="h2">Tous nos restaurants</Editable>
+        <Editable id="home.locations.text" as="p">Trouvez un restaurant de burgers pres de chez vous, ouvert sur place ou en livraison.</Editable>
 
         <div className="locations-grid-home">
           {locations.slice(0, 4).map((loc) => (
@@ -231,13 +232,13 @@ function App() {
                 <img src={loc.image} alt={loc.name} loading="lazy" />
               </div>
               <div className="location-card-info">
-                <h4>{loc.name}</h4>
+                <Editable id={`home.loccard.${loc.name}`} as="h4">{loc.name}</Editable>
               </div>
             </div>
           ))}
         </div>
         <div style={{ textAlign: 'center', marginTop: '40px' }}>
-          <a href="/restaurants" className="btn-pill btn-outline-black">Tous nos restaurants</a>
+          <a href="/restaurants" className="btn-pill btn-outline-black"><Editable id="home.locations.btn">Tous nos restaurants</Editable></a>
         </div>
       </section>
 
@@ -252,18 +253,18 @@ function App() {
         </div>
 
         <div className="breakfast-content pattern-lines">
-          <h2>Nos restaurants petit-dejeuner</h2>
-          <p>
+          <Editable id="home.breakfast.title" as="h2">Nos restaurants petit-dejeuner</Editable>
+          <Editable id="home.breakfast.text" as="p">
             Bien commencer la journee avec SmashSmash : des burgers petit-dejeuner fraichement
             prepares avec du bacon, des oeufs, du fromage, des tots et bien plus encore.
-          </p>
+          </Editable>
           <div className="breakfast-times">
-            <p><strong>Bordeaux :</strong> 8h &mdash; 11h</p>
-            <p><strong>Saint Germain en Laye :</strong> 8h &mdash; 11h</p>
-            <p><strong>Calais :</strong> 8h &mdash; 11h</p>
+            <Editable id="home.breakfast.h1" as="p"><strong>Bordeaux :</strong> 8h &mdash; 11h</Editable>
+            <Editable id="home.breakfast.h2" as="p"><strong>Saint Germain en Laye :</strong> 8h &mdash; 11h</Editable>
+            <Editable id="home.breakfast.h3" as="p"><strong>Calais :</strong> 8h &mdash; 11h</Editable>
           </div>
           <div>
-            <a href="/restaurants" className="btn-pill btn-white">Commander</a>
+            <a href="/restaurants" className="btn-pill btn-white"><Editable id="home.breakfast.btn">Commander</Editable></a>
           </div>
         </div>
       </section>
@@ -271,35 +272,35 @@ function App() {
       {/* ===== 10. GAGNER UN REPAS / NEWSLETTER ===== */}
       <section className="newsletter">
         <div className="newsletter-form-section">
-          <h2>Gagnez un repas pour deux !</h2>
-          <p>Inscrivez-vous a notre liste de diffusion pour tenter de gagner un repas pour deux</p>
+          <Editable id="home.news.title" as="h2">Gagnez un repas pour deux !</Editable>
+          <Editable id="home.news.subtitle" as="p">Inscrivez-vous a notre liste de diffusion pour tenter de gagner un repas pour deux</Editable>
 
           <form onSubmit={(e) => e.preventDefault()}>
             <div className="form-row">
               <div className="form-group">
-                <label htmlFor="firstName">Prenom *</label>
+                <label htmlFor="firstName"><Editable id="home.news.label.firstName">Prenom *</Editable></label>
                 <input type="text" id="firstName" placeholder="Votre prenom" required />
               </div>
               <div className="form-group">
-                <label htmlFor="surname">Nom *</label>
+                <label htmlFor="surname"><Editable id="home.news.label.surname">Nom *</Editable></label>
                 <input type="text" id="surname" placeholder="Votre nom" required />
               </div>
             </div>
 
             <div className="form-row">
               <div className="form-group">
-                <label htmlFor="email">E-mail *</label>
+                <label htmlFor="email"><Editable id="home.news.label.email">E-mail *</Editable></label>
                 <input type="email" id="email" placeholder="votre@email.com" required />
               </div>
             </div>
 
             <div className="form-row">
               <div className="form-group">
-                <label htmlFor="birthday">Votre date de naissance *</label>
+                <label htmlFor="birthday"><Editable id="home.news.label.birthday">Votre date de naissance *</Editable></label>
                 <input type="date" id="birthday" required />
               </div>
               <div className="form-group">
-                <label htmlFor="favRestaurant">Votre SmashSmash prefere *</label>
+                <label htmlFor="favRestaurant"><Editable id="home.news.label.favRestaurant">Votre SmashSmash prefere *</Editable></label>
                 <select id="favRestaurant" required>
                   <option value="">Choisir un restaurant</option>
                   <option>Bordeaux</option>
@@ -312,30 +313,30 @@ function App() {
             </div>
 
             <div className="form-checkboxes">
-              <p>Faites-vous partie du NHS ou etes-vous etudiant ?</p>
+              <Editable id="home.news.nhs.question" as="p">Faites-vous partie du NHS ou etes-vous etudiant ?</Editable>
               <div className="checkbox-group">
                 <label className="checkbox-label">
-                  <input type="checkbox" /> Personnel NHS
+                  <input type="checkbox" /> <Editable id="home.news.nhs.staff">Personnel NHS</Editable>
                 </label>
                 <label className="checkbox-label">
-                  <input type="checkbox" /> Etudiant
+                  <input type="checkbox" /> <Editable id="home.news.nhs.student">Etudiant</Editable>
                 </label>
               </div>
             </div>
 
             <button type="submit" className="btn-pill btn-white">
-              Je m&rsquo;inscris
+              <Editable id="home.news.submit">Je m&rsquo;inscris</Editable>
             </button>
 
             <div className="form-fine-print">
-              <p>
+              <Editable id="home.news.fine1" as="p">
                 Un gagnant sera selectionne au hasard chaque mois parmi les abonnes de notre
                 liste de diffusion. Le prix comprend deux burgers, deux frites et deux boissons.
-              </p>
-              <p style={{ marginTop: 8 }}>
+              </Editable>
+              <Editable id="home.news.fine2" as="p" style={{ marginTop: 8 }}>
                 En vous inscrivant, vous acceptez de recevoir des actualites, offres et mises a
                 jour de SmashSmash. Vous pouvez vous desabonner a tout moment.
-              </p>
+              </Editable>
             </div>
           </form>
         </div>
@@ -352,18 +353,18 @@ function App() {
       {/* ===== 11. SECTION DEVELOPPEMENT DURABLE ===== */}
       <section className="sustainability">
         <div className="sustainability-content">
-          <h2>Le developpement durable au coeur de nos actions</h2>
-          <p>
+          <Editable id="home.sustain.title" as="h2">Le developpement durable au coeur de nos actions</Editable>
+          <Editable id="home.sustain.text1" as="p">
             Chez SmashSmash, nous croyons que de bons plats doivent etre benefiques pour
             la communaute et la planete. De l&rsquo;approvisionnement en ingredients responsables
             a la reduction des dechets, le developpement durable guide chacune de nos decisions.
-          </p>
-          <p>
+          </Editable>
+          <Editable id="home.sustain.text2" as="p">
             Nous collaborons avec des fournisseurs qui partagent notre engagement pour une
             agriculture ethique, et nous travaillons en permanence a reduire notre empreinte
             environnementale dans tous nos restaurants au Royaume-Uni.
-          </p>
-          <a href="#" className="btn-pill btn-black">En savoir plus sur notre impact</a>
+          </Editable>
+          <a href="#" className="btn-pill btn-black"><Editable id="home.sustain.btn">En savoir plus sur notre impact</Editable></a>
         </div>
 
         <div className="sustainability-image">
@@ -377,14 +378,14 @@ function App() {
 
       {/* ===== CTA LIVRAISON 2 ===== */}
       <section className="delivery pattern-lines-dark">
-        <h2>Faites-vous livrer des burgers pres de chez vous</h2>
-        <a href="/restaurants" className="btn-pill btn-green-solid delivery-cta">Commander</a>
+        <Editable id="home.delivery2.title" as="h2">Faites-vous livrer des burgers pres de chez vous</Editable>
+        <a href="/restaurants" className="btn-pill btn-green-solid delivery-cta"><Editable id="home.delivery2.btn">Commander</Editable></a>
       </section>
 
       {/* ===== 12. SECTION GALERIE ===== */}
       <section className="gallery-section">
-        <h2>Notre Galerie</h2>
-        <p>Decouvrez SmashSmash en images</p>
+        <Editable id="home.gallery.title" as="h2">Notre Galerie</Editable>
+        <Editable id="home.gallery.subtitle" as="p">Decouvrez SmashSmash en images</Editable>
 
         <div className="gallery-swiper-wrapper">
           <Swiper

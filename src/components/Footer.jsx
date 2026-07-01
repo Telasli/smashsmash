@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { SmashSmashLogo } from './Navbar'
+import Editable from '../editable/Editable'
 
 export default function Footer() {
   return (
@@ -8,34 +9,34 @@ export default function Footer() {
         <div className="footer-top">
           <div className="footer-brand">
             <SmashSmashLogo height={55} />
-            <p>
+            <Editable id="footer.brand.text" as="p">
               Burgers smashes, frites crinkle-cut, milkshakes faits maison et bien plus.
               Ne a Paris, desormais dans toute la France et en Belgique.
-            </p>
+            </Editable>
           </div>
           <div className="footer-columns">
             <div className="footer-column">
-              <h5>Explorer</h5>
-              <Link to="/">Accueil</Link>
-              <Link to="/menu">Menu</Link>
-              <Link to="/restaurants">Nos Restaurants</Link>
-              <Link to="/notre-histoire">Notre Histoire</Link>
+              <Editable id="footer.col1.title" as="h5">Explorer</Editable>
+              <Link to="/"><Editable id="nav.accueil">Accueil</Editable></Link>
+              <Link to="/menu"><Editable id="nav.menu">Menu</Editable></Link>
+              <Link to="/restaurants"><Editable id="nav.restaurants">Nos Restaurants</Editable></Link>
+              <Link to="/notre-histoire"><Editable id="nav.histoire">Notre Histoire</Editable></Link>
             </div>
             <div className="footer-column">
-              <h5>Rejoindre</h5>
-              <Link to="/franchise">Devenir Franchise</Link>
-              <a href="#">Contact</a>
+              <Editable id="footer.col2.title" as="h5">Rejoindre</Editable>
+              <Link to="/franchise"><Editable id="nav.franchise">Devenir Franchise</Editable></Link>
+              <a href="#"><Editable id="footer.contact">Contact</Editable></a>
             </div>
             <div className="footer-column">
-              <h5>Mentions legales</h5>
-              <a href="#">Politique de confidentialite</a>
-              <a href="#">Conditions d&rsquo;utilisation</a>
-              <a href="#">Politique de cookies</a>
+              <Editable id="footer.col3.title" as="h5">Mentions legales</Editable>
+              <a href="#"><Editable id="footer.legal.privacy">Politique de confidentialite</Editable></a>
+              <a href="#"><Editable id="footer.legal.terms">Conditions d&rsquo;utilisation</Editable></a>
+              <a href="#"><Editable id="footer.legal.cookies">Politique de cookies</Editable></a>
             </div>
           </div>
         </div>
         <div className="footer-bottom">
-          <p>&copy; 2026 SmashSmash. Tous droits reserves.</p>
+          <Editable id="footer.copyright" as="p">&copy; 2026 SmashSmash. Tous droits reserves.</Editable>
           <div className="footer-socials">
             <a href="https://www.instagram.com/smashsmashfr/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" strokeWidth="1.5" /><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" strokeWidth="1.5" /><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" /></svg>

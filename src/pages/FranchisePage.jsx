@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Editable from '../editable/Editable'
 import './FranchisePage.css'
 
 /* ================================================================
@@ -110,13 +111,13 @@ export default function FranchisePage() {
       <section className="franchise-hero">
         <div className="franchise-hero-bg pattern-lines">
           <div className="franchise-hero-content">
-            <span className="franchise-hero-tag">Rejoignez l&rsquo;aventure</span>
-            <h1>Devenez Franchise SmashSmash</h1>
-            <p>
+            <Editable id="fr.hero.tag" as="span" className="franchise-hero-tag">Rejoignez l&rsquo;aventure</Editable>
+            <Editable id="fr.hero.title" as="h1">Devenez Franchise SmashSmash</Editable>
+            <Editable id="fr.hero.text" as="p">
               Vous etes passionne par la restauration et souhaitez rejoindre une marque
               en pleine croissance ? Decouvrez comment ouvrir votre propre SmashSmash.
-            </p>
-            <a href="#contact-form" className="btn-pill btn-white">Postuler maintenant</a>
+            </Editable>
+            <a href="#contact-form" className="btn-pill btn-white"><Editable id="fr.hero.btn">Postuler maintenant</Editable></a>
           </div>
         </div>
       </section>
@@ -126,8 +127,8 @@ export default function FranchisePage() {
         <div className="franchise-stats-inner">
           {stats.map((stat, i) => (
             <div className="franchise-stat" key={i}>
-              <span className="franchise-stat-value">{stat.value}</span>
-              <span className="franchise-stat-label">{stat.label}</span>
+              <Editable id={`fr.stat.${i}.value`} as="span" className="franchise-stat-value">{stat.value}</Editable>
+              <Editable id={`fr.stat.${i}.label`} as="span" className="franchise-stat-label">{stat.label}</Editable>
             </div>
           ))}
         </div>
@@ -136,17 +137,17 @@ export default function FranchisePage() {
       {/* ===== AVANTAGES ===== */}
       <section className="franchise-advantages">
         <div className="franchise-advantages-inner">
-          <h2>Pourquoi SmashSmash ?</h2>
-          <p className="franchise-advantages-intro">
+          <Editable id="fr.adv.title" as="h2">Pourquoi SmashSmash ?</Editable>
+          <Editable id="fr.adv.intro" as="p" className="franchise-advantages-intro">
             Rejoindre SmashSmash, c&rsquo;est integrer un reseau solide avec un concept eprouve
             et un accompagnement a chaque etape.
-          </p>
+          </Editable>
           <div className="advantages-grid">
             {advantages.map((item, i) => (
               <div className="advantage-card" key={i}>
                 <div className="advantage-icon">{item.icon}</div>
-                <h4>{item.title}</h4>
-                <p>{item.description}</p>
+                <Editable id={`fr.adv.${i}.title`} as="h4">{item.title}</Editable>
+                <Editable id={`fr.adv.${i}.desc`} as="p">{item.description}</Editable>
               </div>
             ))}
           </div>
@@ -156,16 +157,16 @@ export default function FranchisePage() {
       {/* ===== ETAPES ===== */}
       <section className="franchise-steps">
         <div className="franchise-steps-inner">
-          <h2>Le parcours franchise</h2>
-          <p className="franchise-steps-intro">
+          <Editable id="fr.steps.title" as="h2">Le parcours franchise</Editable>
+          <Editable id="fr.steps.intro" as="p" className="franchise-steps-intro">
             De la candidature a l&rsquo;ouverture, nous vous accompagnons a chaque etape.
-          </p>
+          </Editable>
           <div className="steps-grid">
             {steps.map((step, i) => (
               <div className="step-card" key={i}>
-                <span className="step-number">{step.number}</span>
-                <h4>{step.title}</h4>
-                <p>{step.description}</p>
+                <Editable id={`fr.step.${i}.number`} as="span" className="step-number">{step.number}</Editable>
+                <Editable id={`fr.step.${i}.title`} as="h4">{step.title}</Editable>
+                <Editable id={`fr.step.${i}.desc`} as="p">{step.description}</Editable>
               </div>
             ))}
           </div>
@@ -175,16 +176,16 @@ export default function FranchisePage() {
       {/* ===== TEMOIGNAGE ===== */}
       <section className="franchise-testimonial">
         <div className="franchise-testimonial-inner">
-          <blockquote>
+          <Editable id="fr.testimonial.quote" as="blockquote">
             &laquo; Ouvrir un SmashSmash a ete la meilleure decision de ma carriere.
             L&rsquo;accompagnement est exceptionnel et les resultats ont depasse
             toutes mes attentes des le premier mois. &raquo;
-          </blockquote>
+          </Editable>
           <div className="testimonial-author">
-            <div className="testimonial-avatar">JR</div>
+            <Editable id="fr.testimonial.avatar" as="div" className="testimonial-avatar">JR</Editable>
             <div>
-              <strong>Julien Roux</strong>
-              <span>Franchise SmashSmash Lyon</span>
+              <Editable id="fr.testimonial.author" as="strong">Julien Roux</Editable>
+              <Editable id="fr.testimonial.role" as="span">Franchise SmashSmash Lyon</Editable>
             </div>
           </div>
         </div>
@@ -194,32 +195,32 @@ export default function FranchisePage() {
       <section className="franchise-form-section" id="contact-form">
         <div className="franchise-form-inner">
           <div className="franchise-form-info">
-            <h2>Candidature Franchise</h2>
-            <p>
+            <Editable id="fr.form.title" as="h2">Candidature Franchise</Editable>
+            <Editable id="fr.form.text" as="p">
               Remplissez ce formulaire pour nous faire part de votre interet.
               Notre equipe franchise vous recontactera sous 48 heures pour
               un premier echange.
-            </p>
+            </Editable>
             <div className="franchise-form-details">
               <div className="franchise-detail">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="20" height="20">
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
                 </svg>
-                <span>01 23 45 67 89</span>
+                <Editable id="fr.contact.phone">01 23 45 67 89</Editable>
               </div>
               <div className="franchise-detail">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="20" height="20">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                   <polyline points="22,6 12,13 2,6" />
                 </svg>
-                <span>franchise@smashsmash.fr</span>
+                <Editable id="fr.contact.email">franchise@smashsmash.fr</Editable>
               </div>
               <div className="franchise-detail">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="20" height="20">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
                   <circle cx="12" cy="10" r="3" />
                 </svg>
-                <span>12 Rue de la Paix, 75002 Paris</span>
+                <Editable id="fr.contact.address">12 Rue de la Paix, 75002 Paris</Editable>
               </div>
             </div>
           </div>
@@ -227,33 +228,33 @@ export default function FranchisePage() {
           <form className="franchise-form" onSubmit={handleSubmit}>
             <div className="franchise-form-row">
               <div className="franchise-form-group">
-                <label htmlFor="firstName">Prenom *</label>
+                <label htmlFor="firstName"><Editable id="fr.form.label.firstName">Prenom *</Editable></label>
                 <input type="text" id="firstName" name="firstName" value={form.firstName} onChange={handleChange} placeholder="Votre prenom" required />
               </div>
               <div className="franchise-form-group">
-                <label htmlFor="lastName">Nom *</label>
+                <label htmlFor="lastName"><Editable id="fr.form.label.lastName">Nom *</Editable></label>
                 <input type="text" id="lastName" name="lastName" value={form.lastName} onChange={handleChange} placeholder="Votre nom" required />
               </div>
             </div>
 
             <div className="franchise-form-row">
               <div className="franchise-form-group">
-                <label htmlFor="email">E-mail *</label>
+                <label htmlFor="email"><Editable id="fr.form.label.email">E-mail *</Editable></label>
                 <input type="email" id="email" name="email" value={form.email} onChange={handleChange} placeholder="votre@email.com" required />
               </div>
               <div className="franchise-form-group">
-                <label htmlFor="phone">Telephone *</label>
+                <label htmlFor="phone"><Editable id="fr.form.label.phone">Telephone *</Editable></label>
                 <input type="tel" id="phone" name="phone" value={form.phone} onChange={handleChange} placeholder="06 12 34 56 78" required />
               </div>
             </div>
 
             <div className="franchise-form-row">
               <div className="franchise-form-group">
-                <label htmlFor="city">Ville souhaitee *</label>
+                <label htmlFor="city"><Editable id="fr.form.label.city">Ville souhaitee *</Editable></label>
                 <input type="text" id="city" name="city" value={form.city} onChange={handleChange} placeholder="Paris, Lyon, Marseille..." required />
               </div>
               <div className="franchise-form-group">
-                <label htmlFor="investment">Budget d&rsquo;investissement *</label>
+                <label htmlFor="investment"><Editable id="fr.form.label.investment">Budget d&rsquo;investissement *</Editable></label>
                 <select id="investment" name="investment" value={form.investment} onChange={handleChange} required>
                   <option value="">Selectionnez</option>
                   <option value="150-250k">150 000 - 250 000 EUR</option>
@@ -264,7 +265,7 @@ export default function FranchisePage() {
             </div>
 
             <div className="franchise-form-group franchise-form-group--full">
-              <label htmlFor="experience">Experience en restauration</label>
+              <label htmlFor="experience"><Editable id="fr.form.label.experience">Experience en restauration</Editable></label>
               <select id="experience" name="experience" value={form.experience} onChange={handleChange}>
                 <option value="">Selectionnez</option>
                 <option value="none">Aucune experience</option>
@@ -276,20 +277,22 @@ export default function FranchisePage() {
             </div>
 
             <div className="franchise-form-group franchise-form-group--full">
-              <label htmlFor="message">Votre message *</label>
+              <label htmlFor="message"><Editable id="fr.form.label.message">Votre message *</Editable></label>
               <textarea id="message" name="message" value={form.message} onChange={handleChange} placeholder="Parlez-nous de votre projet, vos motivations..." rows={5} required />
             </div>
 
             <div className="franchise-form-consent">
               <label>
                 <input type="checkbox" required />
-                J&rsquo;accepte que mes donnees soient traitees dans le cadre de ma candidature franchise.
-                Voir notre <a href="#">politique de confidentialite</a>.
+                <Editable id="fr.form.consent">
+                  J&rsquo;accepte que mes donnees soient traitees dans le cadre de ma candidature franchise.
+                  Voir notre politique de confidentialite.
+                </Editable>
               </label>
             </div>
 
             <button type="submit" className="btn-pill btn-green-solid franchise-submit">
-              Envoyer ma candidature
+              <Editable id="fr.form.submit">Envoyer ma candidature</Editable>
             </button>
           </form>
         </div>

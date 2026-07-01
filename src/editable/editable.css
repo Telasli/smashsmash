@@ -1,0 +1,160 @@
+/* ================================================================
+   Styles du systeme d'edition des textes
+   ================================================================ */
+
+/* ---- Elements editables (mode edition actif) ---- */
+.editable.is-editing {
+  outline: 2px dashed rgba(80, 175, 70, 0.55);
+  outline-offset: 3px;
+  border-radius: 3px;
+  cursor: text;
+  transition: outline-color 0.15s ease, background 0.15s ease;
+  min-width: 12px;
+  min-height: 1em;
+}
+
+.editable.is-editing:hover {
+  outline-color: #50af46;
+  background: rgba(80, 175, 70, 0.08);
+}
+
+.editable.is-editing:focus {
+  outline: 2px solid #50af46;
+  background: rgba(80, 175, 70, 0.12);
+}
+
+/* ---- Barre d'administration ---- */
+.admin-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 10px 16px;
+  background: #000106;
+  color: #fff;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 14px;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.35);
+  border-top: 3px solid #50af46;
+}
+
+.admin-bar-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.admin-bar-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #50af46;
+  box-shadow: 0 0 8px #50af46;
+}
+
+.admin-bar-login,
+.admin-bar-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.admin-bar-login input {
+  padding: 7px 12px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #14151a;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+}
+
+.admin-bar-login input:focus {
+  border-color: #50af46;
+}
+
+.admin-bar button {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+  white-space: nowrap;
+}
+
+.admin-bar button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.admin-bar-login button {
+  background: #50af46;
+  color: #fff;
+}
+
+.admin-bar-toggle {
+  background: #14151a;
+  color: #fff;
+  border: 1px solid #444 !important;
+}
+
+.admin-bar-toggle.is-on {
+  background: #50af46;
+  color: #fff;
+  border-color: #50af46 !important;
+}
+
+.admin-bar-reset,
+.admin-bar-logout {
+  background: transparent;
+  color: #bbb;
+  border: 1px solid #444 !important;
+}
+
+.admin-bar-reset:hover,
+.admin-bar-logout:hover {
+  color: #fff;
+  border-color: #888 !important;
+}
+
+.admin-bar-status {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.admin-bar-status--saved { color: #50af46; }
+.admin-bar-status--error { color: #ff6b6b; }
+.admin-bar-status--saving { color: #e8960c; }
+
+.admin-bar-error {
+  color: #ff6b6b;
+  font-size: 13px;
+}
+
+.admin-bar-close {
+  margin-left: auto;
+  background: transparent !important;
+  color: #888 !important;
+  border: none !important;
+  font-size: 22px !important;
+  line-height: 1;
+  padding: 0 6px !important;
+}
+
+.admin-bar-close:hover { color: #fff !important; }
+
+@media (max-width: 640px) {
+  .admin-bar { font-size: 13px; gap: 10px; }
+}
