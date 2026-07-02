@@ -1,4 +1,5 @@
 import { put, list } from '@vercel/blob'
+import { sendMail, buildTable } from '../lib/email.js'
 
 /* ================================================================
    API /api/franchise  —  Candidatures franchise
@@ -78,6 +79,22 @@ export default async function handler(req, res) {
     const arr = await readAll()
     arr.push(entry)
     await writeAll(arr)
+    // Notification email (best-effort : n'interrompt jamais la reponse)
+    await sendMail({
+      subject: `Nouvelle candidature franchise — ${entry.firstName} ${entry.lastName} (${entry.city})`.trim(),
+      replyTo: entry.email,
+      html: buildTable('Nouvelle candidature franchise', [
+        ['Prenom', entry.firstName],
+        ['Nom', entry.lastName],
+        ['E-mail', entry.email],
+        ['Telephone', entry.phone],
+        ['Ville souhaitee', entry.city],
+        ['Budget', entry.investment],
+        ['Experience', entry.experience],
+        ['Message', entry.message],
+        ['Recu le', entry.date],
+      ]),
+    }).catch(() => {})
     return res.status(200).json({ ok: true })
   } catch (e) {
     return res.status(500).json({ error: e?.message || 'Erreur d\'enregistrement.' })

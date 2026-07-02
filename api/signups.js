@@ -1,4 +1,5 @@
 import { put, list } from '@vercel/blob'
+import { sendMail, buildTable } from '../lib/email.js'
 
 /* ================================================================
    API /api/signups  —  Inscriptions au concours "Gagnez un repas"
@@ -73,6 +74,19 @@ export default async function handler(req, res) {
     const arr = await readSignups()
     arr.push(entry)
     await writeSignups(arr)
+    // Notification email (best-effort : n'interrompt jamais la reponse)
+    await sendMail({
+      subject: `Nouvelle inscription concours — ${entry.firstName} ${entry.surname}`.trim(),
+      replyTo: entry.email,
+      html: buildTable('Nouvelle inscription au concours', [
+        ['Prenom', entry.firstName],
+        ['Nom', entry.surname],
+        ['E-mail', entry.email],
+        ['Date de naissance', entry.birthday],
+        ['Restaurant prefere', entry.favRestaurant],
+        ['Recu le', entry.date],
+      ]),
+    }).catch(() => {})
     return res.status(200).json({ ok: true })
   } catch (e) {
     return res.status(500).json({ error: e?.message || 'Erreur d\'enregistrement.' })
