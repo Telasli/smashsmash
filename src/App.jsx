@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Autoplay } from 'swiper/modules'
 import 'swiper/css'
@@ -91,6 +91,27 @@ function App() {
   const menuNextRef = useRef(null)
   const locPrevRef = useRef(null)
   const locNextRef = useRef(null)
+  const heroVideoRef = useRef(null)
+
+  // Autoplay video mobile (iOS/Safari) : forcer la propriete muted et lancer la lecture.
+  // React ne fixe pas toujours la propriete `muted` de maniere fiable, or iOS
+  // n'autorise l'autoplay que si la video est reellement muette + playsinline.
+  useEffect(() => {
+    const v = heroVideoRef.current
+    if (!v) return
+    v.muted = true
+    v.defaultMuted = true
+    v.setAttribute('muted', '')
+    const play = () => {
+      const p = v.play()
+      if (p && typeof p.catch === 'function') p.catch(() => {})
+    }
+    play()
+    // Certaines versions iOS ne demarrent qu'a la premiere interaction : on reessaie alors.
+    const onFirstTouch = () => { play(); window.removeEventListener('touchstart', onFirstTouch) }
+    window.addEventListener('touchstart', onFirstTouch, { once: true, passive: true })
+    return () => window.removeEventListener('touchstart', onFirstTouch)
+  }, [])
 
   // Inscription au concours "Gagnez un repas" (envoi vers /api/signups)
   const [newsletterStatus, setNewsletterStatus] = useState('idle') // idle | sending | done | error
@@ -122,12 +143,15 @@ function App() {
       {/* ===== 3. SECTION HERO ===== */}
       <section className="hero-video-hero">
         <video
+          ref={heroVideoRef}
           className="hero-video-bg"
           src="/video-presentation.mp4"
           autoPlay
           muted
           loop
           playsInline
+          preload="auto"
+          poster="/smash-bacon-burger.jpg"
         />
         <div className="hero-video-overlay" />
         <div className="hero-video-content">

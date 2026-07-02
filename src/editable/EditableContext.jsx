@@ -21,12 +21,26 @@ export const useEditable = () => {
 const LS_TEXTS = 'smashsmash_texts'
 const SS_PASSWORD = 'smashsmash_admin_pw'
 
+/* Acces stockage tolerant aux erreurs.
+   Safari (Prevent Cross-Site Tracking, navigation privee, navigateurs in-app)
+   peut LEVER une exception rien qu'a l'acces a localStorage/sessionStorage.
+   Sans ces gardes, le provider planterait et le site ne s'ouvrirait pas. */
+const safeGet = (store, key) => {
+  try { return window[store].getItem(key) } catch { return null }
+}
+const safeSet = (store, key, val) => {
+  try { window[store].setItem(key, val) } catch { /* stockage indisponible */ }
+}
+const safeRemove = (store, key) => {
+  try { window[store].removeItem(key) } catch { /* stockage indisponible */ }
+}
+
 export function EditableProvider({ children }) {
   const [overrides, setOverrides] = useState(() => {
-    try { return JSON.parse(localStorage.getItem(LS_TEXTS)) || {} } catch { return {} }
+    try { return JSON.parse(safeGet('localStorage', LS_TEXTS)) || {} } catch { return {} }
   })
   const [editMode, setEditMode] = useState(false)
-  const [password, setPassword] = useState(() => sessionStorage.getItem(SS_PASSWORD) || '')
+  const [password, setPassword] = useState(() => safeGet('sessionStorage', SS_PASSWORD) || '')
   const [loggedIn, setLoggedIn] = useState(false)
   const [status, setStatus] = useState('idle') // idle | saving | saved | error
 
@@ -42,7 +56,7 @@ export function EditableProvider({ children }) {
       .then((data) => {
         if (cancelled || !data || typeof data !== 'object') return
         setOverrides(data)
-        try { localStorage.setItem(LS_TEXTS, JSON.stringify(data)) } catch { /* quota */ }
+        safeSet('localStorage', LS_TEXTS, JSON.stringify(data))
       })
       .catch(() => { /* hors-ligne / dev sans /api : on garde le cache local */ })
     return () => { cancelled = true }
@@ -82,7 +96,7 @@ export function EditableProvider({ children }) {
   const saveText = useCallback((id, value) => {
     setOverrides((prev) => {
       const next = { ...prev, [id]: value }
-      try { localStorage.setItem(LS_TEXTS, JSON.stringify(next)) } catch { /* quota */ }
+      safeSet('localStorage', LS_TEXTS, JSON.stringify(next))
       scheduleSave(next)
       return next
     })
@@ -93,7 +107,7 @@ export function EditableProvider({ children }) {
       if (!Object.prototype.hasOwnProperty.call(prev, id)) return prev
       const next = { ...prev }
       delete next[id]
-      try { localStorage.setItem(LS_TEXTS, JSON.stringify(next)) } catch { /* quota */ }
+      safeSet('localStorage', LS_TEXTS, JSON.stringify(next))
       scheduleSave(next)
       return next
     })
@@ -102,7 +116,7 @@ export function EditableProvider({ children }) {
   const resetAll = useCallback(() => {
     setOverrides(() => {
       const next = {}
-      try { localStorage.setItem(LS_TEXTS, JSON.stringify(next)) } catch { /* quota */ }
+      safeSet('localStorage', LS_TEXTS, JSON.stringify(next))
       scheduleSave(next)
       return next
     })
@@ -123,7 +137,7 @@ export function EditableProvider({ children }) {
     if (ok) {
       setPassword(pw)
       setLoggedIn(true)
-      sessionStorage.setItem(SS_PASSWORD, pw)
+      safeSet('sessionStorage', SS_PASSWORD, pw)
     }
     return ok
   }, [])
@@ -155,7 +169,7 @@ export function EditableProvider({ children }) {
     setPassword('')
     setLoggedIn(false)
     setEditMode(false)
-    sessionStorage.removeItem(SS_PASSWORD)
+    safeRemove('sessionStorage', SS_PASSWORD)
   }, [])
 
   const value = {
