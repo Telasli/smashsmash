@@ -18,6 +18,30 @@
   --font-body: 'DM Sans', 'Jost', sans-serif;
 }
 
+/* ------------------------------------------------------------------
+   Neutralisation du formatage colle dans les textes editables.
+   Quand un texte est modifie via l'editeur (classe .is-overridden),
+   les styles en dur embarques par un copier-coller (Word/Calibri,
+   font-size en px/pt, spans stylises...) sont annules pour revenir
+   a la police et a la taille de la charte. Le gras et l'italique
+   sont preserves (font-weight / font-style non touches).
+   ------------------------------------------------------------------ */
+.is-overridden [style],
+.is-overridden font,
+.is-overridden [class*="Mso"] {
+  font-family: inherit !important;
+  font-size: inherit !important;
+  letter-spacing: inherit !important;
+  line-height: inherit !important;
+  color: inherit !important;
+  background: transparent !important;
+}
+
+.is-overridden [class*="Mso"] {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 /* Utility: food icon pattern overlay */
 .pattern-bg {
   position: relative;
