@@ -23,7 +23,7 @@ const locations = [
     address: '90 Av. du Marechal Foch, 78100 Saint-Germain-en-Laye',
     hours: 'Tous les jours 11h30-01h00',
     status: 'open',
-    orderUrl: 'https://restabo.app/smash-smash-saint-germain-en-laye',
+    orderUrl: 'https://saintgermainenlaye.smashsmash.com/',
     googleUrl: 'https://share.google/UsaiHJHO9GOGEh1Zf',
     lat: 48.8986, lng: 2.0938,
   },
