@@ -33,7 +33,7 @@ export default function Footer() {
             <div className="footer-column">
               <Editable id="footer.col2.title" as="h5">Rejoindre</Editable>
               <Link to="/franchise"><Editable id="nav.franchise">Devenir Franchise</Editable></Link>
-              <a href="#"><Editable id="footer.contact">Contact</Editable></a>
+              <Link to="/franchise"><Editable id="footer.contact">Contact</Editable></Link>
             </div>
           </div>
         </div>
