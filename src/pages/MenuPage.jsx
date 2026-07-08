@@ -238,7 +238,7 @@ export default function MenuPage() {
       <div className="menu-page-header pattern-lines-dark">
         <div className="menu-page-header-inner">
           <Editable id="menu.header.title" as="h1">Notre Menu</Editable>
-          <a href="/restaurants" className="btn-pill btn-green-solid"><Editable id="menu.header.btn">Commander</Editable></a>
+          <a href="https://saintgermainenlaye.smashsmash.com/" className="btn-pill btn-green-solid"><Editable id="menu.header.btn">Commander</Editable></a>
         </div>
       </div>
 
