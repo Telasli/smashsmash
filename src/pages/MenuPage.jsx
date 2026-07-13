@@ -334,6 +334,39 @@ export default function MenuPage() {
             </div>
           )
         })}
+
+        {/* ===== LISTE DES ALLERGENES (tout en bas, sous les Veggies) ===== */}
+        <div className="menu-allergenes">
+          <a
+            href="/allergenes-smashsmash.pdf"
+            download
+            target="_blank"
+            rel="noopener noreferrer"
+            className="menu-allergenes-link"
+          >
+            <svg
+              className="menu-allergenes-icon"
+              viewBox="0 0 48 48"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              {/* Bouteille de lait */}
+              <path d="M17 14h6v3.2l1.1 2.1c.5 1 .8 2.2.8 3.3V35a3 3 0 0 1-3 3h-3.8a3 3 0 0 1-3-3V22.6c0-1.1.3-2.3.8-3.3L17 17.2V14z" />
+              <line x1="16" y1="23.5" x2="25" y2="23.5" />
+              {/* Cacahuete */}
+              <circle cx="32.5" cy="13" r="3.3" />
+              <circle cx="35.5" cy="18.5" r="3.3" />
+              {/* Symbole d'interdiction */}
+              <circle cx="33" cy="33" r="8" />
+              <line x1="27.3" y1="27.3" x2="38.7" y2="38.7" />
+            </svg>
+            <Editable id="menu.allergenes.label" as="span">Telecharger la liste des allergenes (PDF)</Editable>
+          </a>
+        </div>
       </div>
     </div>
   )

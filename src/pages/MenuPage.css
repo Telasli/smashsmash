@@ -442,3 +442,45 @@
     aspect-ratio: 1.1;
   }
 }
+
+/* ===== LIEN LISTE DES ALLERGENES ===== */
+.menu-allergenes {
+  display: flex;
+  justify-content: center;
+  padding: 48px 20px 8px;
+}
+
+.menu-allergenes-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 26px;
+  border: 1.5px solid var(--black);
+  border-radius: 999px;
+  color: var(--black);
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.menu-allergenes-link:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+.menu-allergenes-icon {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .menu-allergenes-link {
+    font-size: 13px;
+    padding: 12px 20px;
+  }
+  .menu-allergenes-icon { width: 26px; height: 26px; }
+}
